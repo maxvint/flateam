@@ -1,0 +1,31 @@
+<form action="/task/doPost" method="post" class="form-horizontal">
+	<div class="control-group">
+		<label for="project" class="ml10"><strong class="require">*</strong>选择项目：</label>
+		<div class="span4">
+			<select name="project">
+				<% list.forEach(function (data, index) { %>
+				<option value="<%=data._id %>"><%=data.title %></option>
+				<% }) %>
+			</select>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="span4">
+			<input type="text" name="title" class="input-xxlarge" id="title" placeholder="请输入任务名称">
+		</div>
+	</div>
+</form>
+
+<script type="text/javascript">
+	$('#title').focus();
+	$('.form-horizontal').validate({
+		rules: {
+			project: 'required',
+			title: 'required',
+		},
+		messages: {
+			project: '请您选择所属项目',
+			title: '请您输入任务名称',
+		},
+	});
+</script>

@@ -1,22 +1,29 @@
 <%- include ../header.html %>
 <div id="" class="container main">
 	<div class="row a-fadein">
-		<div class="pro-post">
-			<a href="javascript:void(0);" event-node="post" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i>添加项目</a>
+		<% if(count <= 0) { %>
+		<div class="main-add">
+			<a href="javascript:void(0);" event-node="post" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i>创建项目</a>
+			<p>还没有项目，立即创建一个吧！</p>
 		</div>
-		<ul class="pro-list">
+		<% } else { %>
+		<div class="main-post">
+			<a href="javascript:void(0);" event-node="post" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i>创建项目</a>
+		</div>
+		<ul class="main-list">
 			<% list.forEach(function (data, index) { %>
 			<li id="<%= data._id %>">
 				<a href="javascript:void(0);" class="stick" event-node="stick" event-args="id=<%= data._id%>" title="置顶"></a>
 				<a href="/project/<%= data._id %>" class="block">
 					<h5><%= data.title %></h5>
-					<div class="progress progress-warning"><div class="bar" style="width: 60%;">60%</div></div>
+					<div class="progress progress-warning"><div class="bar" style="width: 0%;">0%</div></div>
 				</a>
 			</li>
 			<% }) %>
 		</ul>
+		<% } %>
 		<%- include ../paging.html %>
 	</div>
 </div>
-<script type="text/javascript" src="/js/project.js"></script>
+<script type="text/javascript" src="/js/flateam-project.js"></script>
 <%- include ../footer.html %>
