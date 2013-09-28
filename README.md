@@ -1,4 +1,4 @@
 Flateam
 =======
 
-Flateam is a flat team tool for a web project
+Flateam is a flat team tool for a web project.

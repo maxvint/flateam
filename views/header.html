@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Flateam - 轻量项目管理</title>
+	<meta content="" name="keywords">
+    <meta content="....." name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link type="image/x-icon" href="/img/favicon.ico" rel="shortcut icon">
+	<link rel="stylesheet" href="/css/flatter.css">
+	<link rel="stylesheet" href="/css/animation.css">
+	<link rel="stylesheet" href="/css/style.css">
+
+	<script type="text/javascript" src="/js/jquery.1.9.0.min.js"></script>
+	<script type="text/javascript" src="/js/flateam-core.js"></script>
+	<script type="text/javascript" src="/js/flateam-module.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap-modal.js"></script>
+</head>
+<body>
+	<header class="navbar navbar-default navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="/" title="<%= title %>">Flateam</a>
+				<ul class="nav navbar-nav">
+					<li <% if (alias == 'index'){ %>class="active"<% } %>><a href="/">首页</a></li>
+					<li <% if (alias == 'project'){ %>class="active"<% } %>><a href="/project">项目</a></li>
+					<li <% if (alias == 'task'){ %>class="active"<% } %>><a href="/task">任务</a></li>
+					<li <% if (alias == 'demand'){ %>class="active"<% } %>><a href="/demand">需求</a></li>
+					<li <% if (alias == 'bug'){ %>class="active"<% } %>><a href="/bug">Bug</a></li>
+					<li <% if (alias == 'doc'){ %>class="active"<% } %>><a href="/doc">文档</a></li>
+					
+					<% if (user) { %>
+					<li <% if (alias == 'user'){ %>class="active"<% } %>><a href="/user/<%= user._id %>"><% if (user.name) { %><%= user.name %><% } else { %><%= user.email %><% } %></a></li>
+					<!-- <li><a href="/upload">上传</a></li> -->
+					<li><a href="/logout">退出</a></li>
+					<li><a href="/setting">设置</a></li>
+
+					<% } else { %>
+					<li><a href="/login">登录</a></li>
+					<li><a href="/register">注册</a></li>
+					<% } %>
+				</ul>
+			</div>
+		</div>
+	</header>
+
+	<script type="text/javascript"><% if (success) { %>ui.success('<%= success %>');<% } %><% if (error) { %>ui.error('<%= error %>');<% } %></script>

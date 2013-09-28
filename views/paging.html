@@ -1,0 +1,11 @@
+<% if(count > perpage) { %>
+<div class="pagination">
+	<ul>
+		<li><% if (!isFirstPage) { %><a title="上一页" href="?p=<%= page-1 %>">上一页</a><% } else { %><span>上一页</span><% } %></li>
+		<% for (i = 1; i<= Math.ceil(count/15); i++) { %>
+			<li><% if (i !== page) { %><a title="" href="?p=<%= i %>"><%= i %></a><% } else { %><span><%= page %></span><% } %></span>
+		<% } %>
+		<li><% if (!isLastPage) { %><a title="下一页" href="?p=<%= page+1 %>">下一页</a><% } else { %><span>下一页</span><% } %></li>
+	</ul>
+</div>
+<% } %>

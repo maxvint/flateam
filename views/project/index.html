@@ -1,0 +1,22 @@
+<%- include ../header.html %>
+<div id="" class="container main">
+	<div class="row a-fadein">
+		<div class="pro-post">
+			<a href="javascript:void(0);" event-node="post" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i>添加项目</a>
+		</div>
+		<ul class="pro-list">
+			<% list.forEach(function (data, index) { %>
+			<li id="<%= data._id %>">
+				<a href="javascript:void(0);" class="stick" event-node="stick" event-args="id=<%= data._id%>" title="置顶"></a>
+				<a href="/project/<%= data._id %>" class="block">
+					<h5><%= data.title %></h5>
+					<div class="progress progress-warning"><div class="bar" style="width: 60%;">60%</div></div>
+				</a>
+			</li>
+			<% }) %>
+		</ul>
+		<%- include ../paging.html %>
+	</div>
+</div>
+<script type="text/javascript" src="/js/project.js"></script>
+<%- include ../footer.html %>

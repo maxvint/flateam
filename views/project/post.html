@@ -1,0 +1,21 @@
+<form action="/project/doPost" method="post" class="form-horizontal">
+	<div class="control-group">
+		<div class="span4">
+			<input type="text" name="title" class="input-xxlarge" id="title" placeholder="请输入项目名称">
+		</div>
+	</div>
+</form>
+		
+<script type="text/javascript" src="/js/jquery.validation.js"></script>
+<script type="text/javascript">
+	$('#title').focus();
+	$('.form-horizontal').validate({
+		rules: {
+			title: "required",
+		},
+		messages: {
+			title: "请您输入项目名称",
+		},
+	});
+
+</script>

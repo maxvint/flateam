@@ -1,0 +1,105 @@
+<%- include ../header.html %>
+<!-- <link rel="stylesheet" type="text/css" href="/js/uploadify/uploadify.css"> -->
+<div id="" class="container main">
+	<div class="row a-fadein">
+		<ul class="breadcrumb">
+			<li><a href="/">首页</a> <span class="divider">/</span></li>
+			<li><a href="/project">项目</a> <span class="divider">/</span></li>
+			<li class="active"><%= project.title %></li>
+		</ul>
+
+		<div class="container span8">
+			<div class="span8">
+				<h3 class="pull-left"><%= project.title %></h3>
+				<div class="pull-right mt20">
+					<a href="javascript:void(0);" class="btn btn-small btn-primary" event-node="start"><i class="icon-play icon-white"></i>开始</a>
+					<a href="javascript:void(0);" class="btn btn-small btn-primary" event-node="delay"><i class="icon-calendar icon-white"></i>延期</a>
+					<a href="javascript:void(0);" class="btn btn-small btn-warning" event-node="delay"><i class="icon-off icon-white"></i>结束</a>
+					<a href="javascript:void(0);" event-node="remove" event-args="id=<%= project._id%>" class="btn btn-small btn-danger"><i class="icon-remove icon-white"></i>删除</a>
+				</div>
+			</div>
+			
+			<div class="span8 pro-main">
+				<div class="pro-field">
+					<div class="post-form">
+						<textarea name="" id="msgfield" placeholder="说说新鲜事……" event-node="msgfield"></textarea>
+						<div class="post-action">
+							<a href="javascript:void(0);" class="at" title="提到好友"></a>
+							<a href="javascript:void(0);" class="photo" title="添加图片" onclick="doUpload();"></a>
+							<input type="button" onclick="doUpload()" value="添加图片">
+							<a href="javascript:void(0);" class="attach" title="添加附件"></a>
+
+
+							<a href="javascript:void(0);" id="doSendmsg" class="pull-right btn btn-primary disabled" event-node="sendmsg" event-args="id=<%= project._id %>">发布</a>
+						</div>
+					</div>
+					<div class="post-other">
+						<a href="javascript:void(0);">任务</a>
+						<a href="javascript:void(0);">需求</a>
+						<a href="javascript:void(0);">Bug</a>
+					</div>
+				</div>
+				<div class="pro-feed">
+					<% feed.forEach(function (value, index) { %>
+						<dl class="feed-item" id="feed<%= value._id %>" model-node="feedList">
+							<dt class="avatar">
+								<a href=""><img src="/img/avatar.jpg" width="60" height="60" class="img-circle"></a>
+							</dt>
+							<dd class="body">
+								<h5><a href="/user/<%= value.uid %>"><%= value.name %></a></h5>
+								<p class="feed-body"><%= value.content %></p>
+								<p class="feed-info">
+									<span>
+										<%= value.ctimeFriendly %>
+
+										<% if(value.uid && user._id == value.uid) { %>
+										<a href="javascript:void(0)" event-node="delFeed" event-args="id=<%= value._id %>" class="delFeed ml20 hide">删除</a>
+										<% } %>
+									</span>
+									<span class="pull-right"></span>
+								</p>
+							</dd>
+						</dl>
+					<% }) %>
+				</div>
+			</div>
+		</div>
+
+		<div class="container pull-right span4 sidebar">
+			<div class="well sidebox">
+				<h5>项目进度</h5>
+
+			</div>
+
+			<div class="well sidebox">
+				<h5>项目文件</h5>
+
+			</div>
+
+			<div class="well sidebox">
+				<h5>项目成员</h5>
+
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/js/project.js"></script>
+<script type="text/javascript" src="/js/jquery.upload.js"></script>
+<script type="text/javascript">
+	function doUpload() {
+	$.upload({
+		url: '/project/uploadPhoto', 
+		// fileName: 'filedata', 
+		// params: {name: 'pxblog'},
+		dataType: 'json',
+		onSend: function() {
+			return true;
+		},
+		onComplate: function(data) {
+			console.log(333);
+			console.log(data);
+		}
+	});
+}
+</script>
+<%- include ../footer.html %>

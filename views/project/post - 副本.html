@@ -1,0 +1,83 @@
+<%- include ../header.html %>
+<div class="container main">
+	<div class="row a-fadein">
+		<ul class="breadcrumb">
+			<li><a href="/">首页</a> <span class="divider">/</span></li>
+			<li><a href="/project">项目</a> <span class="divider">/</span></li>
+			<li class="active">添加项目</li>
+		</ul>
+		<div class="well">
+			<link rel="stylesheet" type="text/css" href="/css/datetimepicker.css">
+			<form method="post" class="form-horizontal">
+				<fieldset>
+					<legend>添加项目</legend>
+					<div class="control-group">
+						<label for="title" class="span2 control-label"><strong class="require">*</strong>项目名称：</label>
+						<div class="span8">
+							<input type="text" name="title" class="input-xxlarge" id="title" placeholder="请输入项目名称">
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="start" class="span2 control-label"><strong class="require">*</strong>开始日期：</label>
+						<div class="span8">
+							<input type="text" name="start" class="input-large form-datetime" id="start" placeholder="点击选择项目开始日期" readonly>
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="end" class="span2 control-label"><strong class="require">*</strong>结束日期：</label>
+						<div class="span8">
+							<input type="text" name="end" class="input-large form-datetime" id="end" placeholder="点击选择项目结束日期" readonly>
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="end" class="span2 control-label">可用工作日：</label>
+						<div class="input-append span8">
+							<input type="text" name="days" class="input-large" placeholder=""><span class="add-on">天</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="goal" class="span2 control-label">项目目标：</label>
+						<div class="span8">
+							<textarea name="goal" class="input-xxxlarge" rows="10" id="goal" placeholder="请您输入项目目标"></textarea>
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="intro" class="span2 control-label">项目介绍：</label>
+						<div class="span8">
+							<textarea name="intro" class="input-xxxlarge" rows="10" id="intro" placeholder="请您输入项目介绍"></textarea>
+						</div>
+					</div>
+					<div class="form-actions">
+						<button type="submit" class="btn btn-large btn-primary">保存</button>
+						<button type="button" class="btn btn-large">取消</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>	
+	</div>
+</div>
+<script type="text/javascript" src="/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="/js/jquery.validation.js"></script>
+<script type="text/javascript">
+	$("#start, #end").datetimepicker({
+		language:  'zh-CN',
+		format: 'yyyy-mm-dd hh:ii:ss',
+		todayBtn:  1,
+	});
+
+	$('.form-horizontal').validate({
+		rules: {
+			title: "required",
+			start: "required",
+			end: "required"
+		},
+		messages: {
+			title: "请您输入项目名称",
+			start: "请您选择项目开始日期",
+			end: "请您选择项目结束日期"
+		},
+	});
+
+</script>
+<%- include ../footer.html %>
