@@ -1,7 +1,7 @@
 module.exports = { 
-  cookieSecret: 'myblog', 
-  db: 'blog',
+  cookieSecret: 'myflateam', 
+  db: 'flateam',
   host: 'localhost',
-  conn: 'mongodb://localhost/blog'
+  conn: 'mongodb://localhost/flateam'
 };
 
