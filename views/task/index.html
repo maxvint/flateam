@@ -13,7 +13,7 @@
 		<ul class="main-list">
 			<% list.forEach(function (data, index) { %>
 			<li id="task_<%= data._id %>">
-				<% if(data.status == 0) { %>
+				<% if(data.status == 1) { %>
 				<a href="javascript:void(0);" class="finished" event-node="finish" event-args="id=<%=data._id %>" title="设为未完成"></a>
 				<a href="/task/<%= data._id %>" class="blocked">
 				<% } else { %>

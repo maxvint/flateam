@@ -11,7 +11,7 @@ M.addEventFns({
   		$.post('/task/doFinish/' + args.id, function(res) {
   			if(res.status == 'success') {
   				var child = $('#task_' + args.id).find('a');
-				if(res.info == 1) {
+				if(res.info == 0) {
 					child[0].className = 'finish';
 					child[1].className = 'block';
 				} else {

@@ -14,7 +14,7 @@ exports.index = function (req, res, next) {
     count = res;
   });
 
-  Task.find({uid: req.session.user._id}, '', {skip: (page - 1)*perpage, limit: perpage, sort: {status: -1, ctime: -1}}, function (err, result) {
+  Task.find({uid: req.session.user._id}, '', {skip: (page - 1)*perpage, limit: perpage, sort: {status: 1, ctime: -1}}, function (err, result) {
     res.render('task/index', {
       title: '任务',
       alias: 'task',
