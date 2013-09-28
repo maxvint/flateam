@@ -17,7 +17,7 @@ M.addModelFns({
 M.addEventFns({
   post: {
     click: function() {
-      ui.load('/project/post', '添加项目');
+      ui.load('/project/post', '创建项目');
     }
   },
   stick: {
@@ -105,16 +105,21 @@ M.addEventFns({
           if(res.status == 'success') {
             var date = Math.round(new Date().getTime()/1000);
             var ctime = core.friendlyDate(res.data.ctime, date);
-            var html = '<dt class="avatar">\
-                <a href=""><img src="/img/avatar.jpg" width="60" height="60" class="img-circle"></a>\
-              </dt>\
+            var html = '<dt class="head">\
+              <a href="" class="avatar"><img src="/img/avatar.jpg" width="60" height="60" class="img-circle"></a>\
+              <h5><a href="/user/'+ res.data.uid +'">'+ res.data.name +'</a></h5>\
+              <p class="feed-info">\
+                <span>'+ ctime +'<a href="javascript:void(0)" event-node="delFeed" event-args="id='+ res.data._id +'" class="delFeed ml20 hide">删除</a></span>\
+                <span class="pull-right"></span>\
+              </p></dt>\
               <dd class="body">\
-                <h5><a href="/user/'+ res.data.uid +'">'+ res.data.name +'</a></h5>\
                 <p class="feed-body">'+ res.data.content +'</p>\
-                <p class="feed-info">\
-                  <span>'+ ctime +'<a href="javascript:void(0)" event-node="delFeed" event-args="id='+ res.data._id +'" class="delFeed ml20 hide">删除</a></span>\
-                  <span class="pull-right"></span>\
-                </p></dd>';
+              </dd>\
+              <dd class="foot">\
+                <div class="control-group">\
+                  <input type="text" name="title" class="input-xxxlarge" id="title" placeholder="我也说一句">\
+                </div>\
+              </dd>';
 
             if($('.pro-feed').length > 0) {
               var before = $('.pro-feed dl').eq(0);

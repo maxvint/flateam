@@ -3,115 +3,115 @@
 
 /*间距*/
 .ml5{
-	margin-left:5px;
+  margin-left:5px;
 }
 
 .mr5{
-	margin-right:5px;
+  margin-right:5px;
 }
 
 .mt5{
-	margin-top:5px;
+  margin-top:5px;
 }
 
 .mb5{
-	margin-bottom:5px;
+  margin-bottom:5px;
 }
 
 .ml10{
-	margin-left:10px;
+  margin-left:10px;
 }
 
 .mr10{
-	margin-right:10px;
+  margin-right:10px;
 }
 
 .mt10{
-	margin-top:10px;
+  margin-top:10px;
 }
 
 .mb10{
-	margin-bottom:10px;
+  margin-bottom:10px;
 }
 
 .ml15{
-	margin-left:15px;
+  margin-left:15px;
 }
 
 .mr15{
-	margin-right:15px;
+  margin-right:15px;
 }  .mt15{
-	margin-top:15px;
+  margin-top:15px;
 }
 
 .mb15{
-	margin-bottom:15px;
+  margin-bottom:15px;
 }
 
 .ml20{
-	margin-left:20px;
+  margin-left:20px;
 }
 
 .mr20{
-	margin-right:20px;
+  margin-right:20px;
 }
 
 .mt20{
-	margin-top:20px;
+  margin-top:20px;
 }
 
 .mb20{
-	margin-bottom:20px;
+  margin-bottom:20px;
 }
 .pl5{
-	padding-left:5px;
+  padding-left:5px;
 }
 
 .pr5{
-	padding-right:5px;
+  padding-right:5px;
 }
 
 .pt5{
-	padding-top:5px;
+  padding-top:5px;
 }
 .pl10{
-	padding-left:10px;
+  padding-left:10px;
 }
 
 .pr10{
-	padding-right:10px;
+  padding-right:10px;
 }
 
 .pt10{
-	padding-top:10px;
+  padding-top:10px;
 }
 
 .pb10{
-	padding-bottom:10px;
+  padding-bottom:10px;
 }
 
 .pl15{
-	padding-left:15px;
+  padding-left:15px;
 }
 
 .pr15{
-	padding-right:15px;
+  padding-right:15px;
 }
 
 .pt15{
-	padding-top:15px;
+  padding-top:15px;
 }
 
 .pb15{
-	padding-bottom:15px;
+  padding-bottom:15px;
 }
 
 .pt20{
-	padding-top:20px;
+  padding-top:20px;
 }
 
 .pb20{
-	padding-bottom:20px;
+  padding-bottom:20px;
 }
 
 
@@ -119,215 +119,234 @@
 
 
 
-
-
-
+/*common*/
 .main {
-	min-height: 1200px;
-	padding: 70px 0 0 0;
+  min-height: 1200px;
+  padding: 70px 0 0 0;
 }
-
 .sidebar {
-	margin: 5px 0 0 0;
+  margin: 5px 0 0 0;
 }
 .sidebox {
-	padding: 5px 20px;
+  padding: 5px 20px;
 }
 
 
-.pro-post {
-	padding: 0 0 15px;
+.main-add {
+  padding: 50px 0;
+  text-align: center;
+  border: 1px solid #eee;
+  background: #f1f1f1;
+}
+.main-add p {
+  margin: 5px 0 0 0;
+  color: #999;
+  line-height: 28px;
+}
+.main-post {
+  padding: 0 0 15px;
+}
+.main-list {
+  margin: 0;
+}
+.main-list li {
+  margin: 0;
+  height: 70px;
+  border-bottom: 1px solid #f1f1f1;
+  border-left: 3px solid #fff;
+  list-style: none;
+  cursor: pointer;
+}
+.main-list li:first-child {
+  border-top: 1px solid #f1f1f1;
+}
+.main-list li:hover {
+  background-color: #eee;
+  -webkit-transition: all 0.24s ease-out;
+  -moz-transition: all 0.24s ease-out;
+  -o-transition: all 0.24s ease-out;
+  transition: all 0.24s ease-out;
+  border-left: 3px solid #00a05e;
+  text-shadow: 0 1px 0 #fff;
+}
+.main-list li a:hover {
+  text-decoration: none;
+}
+.main-list a.block, 
+.main-list a.blocked {
+  display: block;
+  width: 957px;
+  height: 70px;
+}
+.main-list a.blocked h5 {
+  color: #ccc;
+  text-decoration: line-through;
 }
 
-.pro-list {
-	margin: 0;
+.main-list li h5 {
+  float: left;
+  margin: 0;
+  padding: 0 0 0 10px;
+  font-size: 28px;
+  font-weight: 200;
+  line-height: 70px;
 }
-.pro-list li {
-	margin: 0;
-	height: 70px;
-	border-bottom: 1px solid #f1f1f1;
-	border-left: 3px solid #fff;
-	list-style: none;
-	cursor: pointer;
+.main-list a.stick,
+.main-list a.sticked,
+.main-list a.finish,
+.main-list a.finished {
+  float: left;
+  margin: 10px;
+  padding: 5px 0;
+  width: 40px;
+  height: 40px;
+  background: url("../img/ico.png") no-repeat;
 }
-.pro-list li:first-child {
-	border-top: 1px solid #f1f1f1;
+.main-list a.stick {
+  background-position: -50px 5px;
 }
-.pro-list li:hover {
-	background-color: #eee;
-	-webkit-transition: all 0.24s ease-out;
-	-moz-transition: all 0.24s ease-out;
-	-o-transition: all 0.24s ease-out;
-	transition: all 0.24s ease-out;
-	border-left: 3px solid #00a05e;
-	text-shadow: 0 1px 0 #fff;
+.main-list a.sticked,
+.main-list a.stick:hover {
+  background-position: -50px -45px;
 }
-.pro-list li a:hover {
-	text-decoration: none;
+.main-list a.finish {
+  background-position: -50px -95px;
 }
-
-.pro-list a.block {
-	display: block;
-	width: 957px;
-	height: 70px;
+.main-list a.finished {
+  background-position: 0 5px;
 }
-
-.pro-list li h5 {
-	float: left;
-	margin: 0;
-	padding: 0 0 0 10px;
-	font-size: 28px;
-	font-weight: 200;
-	line-height: 70px;
-}
-.pro-list a.stick {
-	float: left;
-	margin: 15px 10px;
-	width: 40px;
-	height: 40px;
-	background: url("../img/ico.png") -50px 0 no-repeat;
-}
-.pro-list a.stick:hover {
-	background-position: -50px -50px;
-}
-.pro-list .progress {
-	float: right;
-	margin: 25px 0 0 20px;
-	width: 200px;
-
+.main-list .progress {
+  float: right;
+  margin: 25px 0 0 20px;
+  width: 200px;
 }
 
 
+/*project module*/
 .pro-field {
-	float: left;
-	padding: 20px;
-	width: 580px;
-	background: #eee;
+  float: left;
+  padding: 20px;
+  width: 580px;
+  background: #eee;
 }
-
-
 .pro-field textarea {
-	float: left;
-	margin: 0;
-	width: 356px;
-	height: 54px;
+  float: left;
+  margin: 0;
+  width: 356px;
+  height: 54px;
 }
 .pro-field .post-other {
-	float: right;
-	width: 210px;
-	height: 70px;
-	/*border-right: 1px solid #ccc;*/
+  float: right;
+  width: 210px;
+  height: 70px;
 }
 .pro-field .post-other a {
-	float: left;
-	padding: 40px 0 0 0;
-	width: 69px;
-	height: 28px;
-	line-height: 28px;
-	border: 1px solid #ccc;
-	border-left: none;
-	background: #fff;
-	text-align: center;
-	vertical-align: middle;
+  float: left;
+  padding: 40px 0 0 0;
+  width: 69px;
+  height: 28px;
+  line-height: 28px;
+  border: 1px solid #ccc;
+  border-left: none;
+  background: #fff;
+  text-align: center;
+  vertical-align: middle;
 }
-
 .pro-field .post-form {
-	float: left;
-	width: 370px;
+  float: left;
+  width: 370px;
 }
-
-
-
-
-
-
-
 .pro-field .post-other a:hover {
-	background: #f9f9f9;
+  background: #f9f9f9;
 }
-
 .pro-main .pro-field .post-action {
-	float: left;
-	padding: 8px 0 0 0;
-	width: 370px;
+  float: left;
+  padding: 8px 0 0 0;
+  width: 370px;
 }
-
 .pro-main .post-action a.at,
 .pro-main .post-action .photo,
 .pro-main .post-action a.attach {
-	float: left;
-	margin: 5px 20px 0 0;
-	width: 24px;
-	height: 24px;
-	background: url("../img/ico.png") no-repeat;
-	z-index: 10;
+  float: left;
+  margin: 5px 20px 0 0;
+  width: 24px;
+  height: 24px;
+  background: url("../img/ico.png") no-repeat;
+  z-index: 10;
 }
 .pro-main .post-action a.at {
-	background-position: -120px -30px;
+  background-position: -120px -30px;
 }
 .pro-main .post-action .photo {
-	background-position: -150px -30px;
+  background-position: -150px -30px;
 }
 .pro-main .post-action a.attach {
-	background-position: -180px -30px;
+  background-position: -180px -30px;
 }
 .pro-main .post-action a.at:hover {
-	background-position: -120px 0;
+  background-position: -120px 0;
 }
 .pro-main .post-action .photo:hover {
-	background-position: -150px 0;
+  background-position: -150px 0;
 }
 .pro-main .post-action a.attach:hover {
-	background-position: -180px 0;
+  background-position: -180px 0;
 }
 .pro-main .post-action a.btn {
-	padding: 6px 25px;
+  padding: 6px 25px;
 }
-
 .pro-main .pro-feed {
-	display: inline-block;
-	margin: 10px 0;
-	width: 620px;
+  display: inline-block;
+  margin: 10px 0;
+  width: 620px;
 }
-
 .pro-feed .feed-item {
-	display: inline-block;
-	margin: 0;
-	padding: 20px 0 0 0;
-	border-bottom: 1px solid #f1f1f1;
-	min-height: 80px;
+  display: inline-block;
+  margin: 10px 0;
+  padding: 20px;
+  border: 1px solid #f1f1f1;
+  min-height: 80px;
 }
-
-.pro-feed .feed-item .avatar {
-	display: inline-block;
-	float: left;
-	margin: 0 10px 0 0;
-	width: 60px;
-	height: 60px;
-
+.pro-feed .feed-item .head {
+  display: inline-block;
+  margin: 0;
+  padding: 0 0 10px 0;
+  width: 580px;
+  height: 50px;
 }
-
-.pro-feed .feed-item .body {
-	margin: 0 0 0 80px;
-	width: 550px;
+.pro-feed .feed-item .head .avatar {
+  float: left;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
 }
-
-.pro-feed .feed-item .body h5 {
-	margin: 0 0 5px 0;
-	height: 14px;
-	line-height: 14px;
+.pro-feed .feed-item .head h5 {
+  margin: 0 0 10px 60px;
+  height: 14px;
+  line-height: 14px;
 }
-
-
-.pro-feed .feed-item .feed-body {
-	line-height: 20px;
-	color: #777;
-	word-wrap: break-word;
-	word-break: break-all;
-}
-
 .pro-feed .feed-item .feed-info {
-	font-size: 12px;
-	color: #999;
-}
+  margin: 0 0 5px 60px;
+  font-size: 12px;
+  color: #999;
 
+}
+.pro-feed .feed-item .body {
+  display: inline-block;
+  margin: 0;
+  width: 580px;
+}
+.pro-feed .feed-item .feed-body {
+  line-height: 24px;
+  color: #777;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.pro-feed .feed-item .foot {
+  margin: 0;
+  padding: 0;
+  height: 40px;
+}
+.pro-feed .feed-item .foot input {
+
+}

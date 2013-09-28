@@ -9,8 +9,9 @@ mongoose.connect(config.conn, function(err) {
 require('./user');
 require('./project');
 require('./feed');
-
+require('./task');
 
 exports.User = mongoose.model('User');
-exports.Project = mongoose.model('Project');
 exports.Feed = mongoose.model('Feed');
+exports.Project = mongoose.model('Project');
+exports.Task = mongoose.model('Task');

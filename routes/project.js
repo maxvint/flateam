@@ -16,10 +16,8 @@ exports.index = function (req, res, next) {
   });
 
   Project.find({uid: req.session.user._id}, '', {skip: (page - 1)*perpage, limit: perpage, sort: [['ctime', 'desc' ]]}, function (err, result) {
-    
     result.forEach(function (data) {
       // (data.end > date) ? data.status = '未完成' : data.status = '已完成';
-      
     });
 
     res.render('project/index', {
@@ -53,7 +51,7 @@ exports.my = function (req, res, next) {
 exports.post = function (req, res, next) {
 
   res.render('project/post', {
-    title: '添加项目',
+    title: '创建项目',
     alias: 'project',
     user: req.session.user,
     success: req.flash('success').toString(),
@@ -62,7 +60,6 @@ exports.post = function (req, res, next) {
 }
 
 exports.doPost = function (req, res, next) {
-
   //写入数据库
   var ctime = Math.round(new Date().getTime()/1000);
   var post = new Project({
@@ -75,7 +72,6 @@ exports.doPost = function (req, res, next) {
     if(err) {
       return next(err);
     }
-    // req.flash('success', '添加成功!');
     res.redirect('/project/');
   });
 
