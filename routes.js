@@ -50,7 +50,10 @@ module.exports = function(app) {
 
   // task page
   app.get('/task', auth.checkLogin, task.index);
-
+  app.get('/task/post', auth.checkLogin, task.post);
+  app.post('/task/doPost', auth.checkLogin, task.doPost);
+  app.post('/task/doFinish/:id', auth.checkLogin, task.doFinish);
+  
   // demand page
   app.get('/demand', auth.checkLogin, demand.index);
 
