@@ -25,7 +25,7 @@ app.set('view engine', 'html');
 app.use(flash());
 app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
 app.use(express.logger('dev'));
-app.use(express.bodyParser({ keepExtensions: true, uploadDir: './static/photo' }));
+app.use(express.bodyParser({ keepExtensions: true, uploadDir: './statics/photo' }));
 app.use(express.methodOverride());
 app.use(express.cookieParser());
 app.use(express.session({
