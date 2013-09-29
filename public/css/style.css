@@ -175,7 +175,6 @@
 .main-list a.block, 
 .main-list a.blocked {
   display: block;
-  width: 957px;
   height: 70px;
 }
 .main-list a.blocked h5 {
@@ -350,3 +349,16 @@
 .pro-feed .feed-item .foot input {
 
 }
+
+
+/*task-info*/
+.task-info .input-append .input-large {
+  margin-right: 10px;
+  width: 260px;
+}
+.task-info .input-append .btn-primary {
+  height: 36px;
+
+}
+
+

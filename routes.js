@@ -53,6 +53,7 @@ module.exports = function(app) {
   app.get('/task/post', auth.checkLogin, task.post);
   app.post('/task/doPost', auth.checkLogin, task.doPost);
   app.post('/task/doFinish/:id', auth.checkLogin, task.doFinish);
+  app.post('/task/doShow/:id', auth.checkLogin, task.doShow);
   
   // demand page
   app.get('/demand', auth.checkLogin, demand.index);

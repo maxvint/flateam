@@ -73,7 +73,6 @@ exports.doPost = function (req, res, next) {
 exports.doFinish = function (req, res, next) {
   var id = req.params.id;
   var status;
-  console.log(id);
   Task.findOne({_id: req.params.id}, function (err, task) {
     (task.status == 0) ? status = 1: status = 0;
     Task.update({_id: req.params.id}, {status: status}, function (err, result) {
@@ -90,5 +89,21 @@ exports.doFinish = function (req, res, next) {
         });
       }
     });
+  });
+}
+
+exports.doShow = function (req, res, next) {
+  Task.findOne({_id: req.params.id}, function (err, task) {
+    if (!err) {
+      res.json({
+        status: 'success',
+        data: task
+      });
+    } else {
+      res.json({
+        status: 'error',
+        data: task,
+      });
+    }
   });
 }
