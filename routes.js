@@ -51,10 +51,13 @@ module.exports = function(app) {
   // task page
   app.get('/task', auth.checkLogin, task.index);
   app.get('/task/post', auth.checkLogin, task.post);
+  // app.get('/task/reply/:id', auth.checkLogin, task.reply);
+  app.get('/task/:id', auth.checkLogin, task.show);
   app.post('/task/doPost', auth.checkLogin, task.doPost);
   app.post('/task/doFinish/:id', auth.checkLogin, task.doFinish);
-  app.post('/task/doShow/:id', auth.checkLogin, task.doShow);
-  
+  app.post('/task/replyPost/:post_id/:content', auth.checkLogin, task.replyPost);
+  app.post('/task/replyRemove/:id', auth.checkLogin, task.replyRemove);
+
   // demand page
   app.get('/demand', auth.checkLogin, demand.index);
 

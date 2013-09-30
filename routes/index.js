@@ -87,8 +87,6 @@ exports.doRegister = function(req, res, next) {
       var arr = newUser.email.split('@');
       newUser.name = arr[0];
     }
-    console.log(newUser);
-
     //如果不存在则新增用户
     newUser.save(function(err) {
       if (err) {

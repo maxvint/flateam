@@ -1,7 +1,7 @@
 var models = require('../models');
 var Task = models.Task;
 var Project = models.Project;
-
+var Reply = models.Reply;
 
 exports.index = function (req, res, next) {
   var total;
@@ -9,7 +9,6 @@ exports.index = function (req, res, next) {
   var perpage = 15;
   var page = req.query.p ? parseInt(req.query.p) : 1;
 
-  
   Task.count({uid: req.session.user._id}, function (err, res) {
     count = res;
   });
@@ -34,9 +33,6 @@ exports.post = function (req, res, next) {
     count = res;
   });
   Project.find({uid: req.session.user._id}, '', {sort: [['ctime', 'desc' ]]}, function (err, result) {
-
-    console.log(result);
-
     res.render('task/post', {
       title: '添加任务',
       alias: 'task',
@@ -47,8 +43,6 @@ exports.post = function (req, res, next) {
       error: req.flash('error').toString()
     });
   });
-
-    
 }
 
 exports.doPost = function (req, res, next) {
@@ -76,7 +70,6 @@ exports.doFinish = function (req, res, next) {
   Task.findOne({_id: req.params.id}, function (err, task) {
     (task.status == 0) ? status = 1: status = 0;
     Task.update({_id: req.params.id}, {status: status}, function (err, result) {
-      console.log(result);
       if (!err) {
         res.json({
           status: 'success',
@@ -92,18 +85,55 @@ exports.doFinish = function (req, res, next) {
   });
 }
 
-exports.doShow = function (req, res, next) {
+exports.show = function (req, res, next) {
   Task.findOne({_id: req.params.id}, function (err, task) {
-    if (!err) {
+    Reply.find({post_id: req.params.id}, '', {sort: [['ctime', 'desc' ]]}, function (err, reply) {
+      res.render('task/show', {
+        task: task,
+        reply: reply
+      });  
+    });
+
+
+  });
+}
+
+exports.showReply = function (req, res, next) {
+  // Replay.find({});
+}
+
+exports.replyPost = function (req, res, next) {
+  //写入数据库
+  var ctime = Math.round(new Date().getTime()/1000);
+  var post = new Reply({
+    post_id: req.params.post_id,
+    from: 'task',
+    uid: req.session.user._id,
+    name: req.session.user.name,
+    content: req.params.content,
+    ctime: ctime,
+    status: 0
+  });
+  post.save(function (err, result) {
+    if(err) {
       res.json({
-        status: 'success',
-        data: task
+        status: 'error'
       });
     } else {
       res.json({
-        status: 'error',
-        data: task,
+        status: 'success',
+        info: result
       });
+    }
+  });
+}
+
+exports.replyRemove = function (req, res, next) {
+  Reply.remove({_id: req.params.id}, function(err) {
+    if (!err) {
+      res.json({
+        status: 'success'
+      })
     }
   });
 }

@@ -114,7 +114,21 @@
   padding-bottom:20px;
 }
 
-
+/*avatar*/
+.avatar-small {
+  float: left;
+  margin: 5px 3px 0 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+.avatar-tiny {
+  float: left;
+  margin: 5px 3px 0 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+}
 
 
 
@@ -220,6 +234,20 @@
   width: 200px;
 }
 
+/*header*/
+.navbar-nav .userinfo {
+  margin: 5px 20px 0;
+}
+.navbar-nav .userinfo .name {
+  display: inline-block;
+  margin: 8px 0 0 0;
+}
+.navbar-nav .userdo {
+  margin: 12px 0 0 20px;
+}
+.navbar-nav .userdo i {
+  margin: 4px 2px 0 0;
+}
 
 /*project module*/
 .pro-field {
@@ -354,11 +382,24 @@
 /*task-info*/
 .task-info .input-append .input-large {
   margin-right: 10px;
-  width: 260px;
+  width: 265px;
 }
 .task-info .input-append .btn-primary {
   height: 36px;
 
 }
-
+.task-info .btn-group a {
+  width: 76px;
+  height: 30px;
+  line-height: 30px;
+}
+.task-info .reply-list {
+  margin: 0;
+}
+.task-info .reply-list li {
+  margin: 0 0 10px 0;
+  padding: 10px;
+  list-style: none;
+  background: #fff;
+}
 

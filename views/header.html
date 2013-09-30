@@ -33,14 +33,26 @@
 					<li <% if (alias == 'doc'){ %>class="active"<% } %>><a href="/doc">文档</a></li>
 					
 					<% if (user) { %>
-					<li <% if (alias == 'user'){ %>class="active"<% } %>><a href="/user/<%= user._id %>"><% if (user.name) { %><%= user.name %><% } else { %><%= user.email %><% } %></a></li>
+					<li>
+						<div class="userinfo">
+							<a href="/user/<%= user._id %>"><img src="/img/avatar-small.jpg" class="avatar-small"></a>
+							<a href="/user/<%= user._id %>" class="name"><% if (user.name) { %><%= user.name %><% } else { %><%= user.email %><% } %></a>
+						</div>
+					</li>
 					<!-- <li><a href="/upload">上传</a></li> -->
-					<li><a href="/logout">退出</a></li>
-					<li><a href="/setting">设置</a></li>
-
+					<li>
+						<div class="userdo">
+							<a href="/setting" class="mr20"><i class="icon-cog"></i>设置</a>
+							<a href="/logout"><i class="icon-off"></i>退出</a>
+						</span>
+					</li>
 					<% } else { %>
-					<li><a href="/login">登录</a></li>
-					<li><a href="/register">注册</a></li>
+					<li>
+						<div class="userdo">
+							<a href="/login">登录</a>
+							<a href="/register">注册</a>
+						</span>
+					</li>
 					<% } %>
 				</ul>
 			</div>
