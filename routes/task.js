@@ -85,6 +85,26 @@ exports.doFinish = function (req, res, next) {
   });
 }
 
+exports.doRemove = function (req, res, next) {
+  console.log(req.params);
+  Task.remove({_id: req.params.id}, function (err, result) {
+    if (!err) {
+      // 删除任务同时，删除任务的评论
+      Reply.remove({post_id: req.params.id}, function (err, result) {
+        if (!err) {
+          res.json({status: 'success'});
+        }
+      });
+    } else {
+      res.json({status: 'error'});
+    }
+  });
+}
+
+exports.doForward = function (req, res, next) {
+  
+}
+
 exports.show = function (req, res, next) {
   Task.findOne({_id: req.params.id}, function (err, task) {
     Reply.find({post_id: req.params.id}, '', {sort: [['ctime', 'desc' ]]}, function (err, reply) {
@@ -93,10 +113,11 @@ exports.show = function (req, res, next) {
         reply: reply
       });  
     });
-
-
   });
 }
+
+
+
 
 exports.showReply = function (req, res, next) {
   // Replay.find({});

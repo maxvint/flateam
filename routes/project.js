@@ -19,7 +19,6 @@ exports.index = function (req, res, next) {
     result.forEach(function (data) {
       // (data.end > date) ? data.status = '未完成' : data.status = '已完成';
     });
-
     res.render('project/index', {
       title: '项目主页',
       alias: 'project',
@@ -34,11 +33,9 @@ exports.index = function (req, res, next) {
       error: req.flash('error').toString()
     });
   });
-
 };
 
 exports.my = function (req, res, next) {
-
   res.render('project/my', {
     title: '我参与的项目',
     alias: 'project',
@@ -49,7 +46,6 @@ exports.my = function (req, res, next) {
 }
 
 exports.post = function (req, res, next) {
-
   res.render('project/post', {
     title: '创建项目',
     alias: 'project',
