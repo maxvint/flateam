@@ -7,39 +7,40 @@
 			<li class="active"><%= project.title %></li>
 		</ul>
 
-		<div class="container span8">
-			<div class="span8">
-				<h3 class="pull-left"><%= project.title %></h3>
+		<div class="container span7">
+			<div>
+				<h2 class="pull-left"><small><a href="/project/<%=project._id %>"><%= project.title %></a></small></h2>
 				<div class="pull-right mt20">
-					<a href="javascript:void(0);" class="btn btn-small btn-primary" event-node="delay"><i class="icon-calendar icon-white"></i>延期</a>
-					<a href="javascript:void(0);" class="btn btn-small btn-warning" event-node="delay"><i class="icon-off icon-white"></i>结束</a>
-					<a href="javascript:void(0);" event-node="remove" event-args="id=<%= project._id%>" class="btn btn-small btn-danger"><i class="icon-remove icon-white"></i>删除</a>
+					<% if(project.uid == user._id) { %>
+						<a href="javascript:void(0);" event-node="manage" event-args="id=<%= project._id%>" class="btn btn-primary"><i class="icon-cog icon-white"></i>项目管理</a>
+						<!-- <a href="javascript:void(0);" event-node="remove" event-args="id=<%= project._id%>" class="btn btn-danger"><i class="icon-remove icon-white"></i>删除项目</a> -->
+					<% } else { %>
+						<% if(project.isJoin == 0) { %>
+						<a href="javascript:void(0);" class="btn btn-primary" event-node="join" event-args="id=<%=project._id %>"><i class="icon-plus icon-white"></i>加入项目</a>
+						<% } else { %>
+						<a href="javascript:void(0);" class="btn btn-primary btn-warning" event-node="unjoin" event-args="id=<%=project._id %>"><i class="icon-off icon-white"></i>退出项目</a>
+						<% } %>
+					<% } %>
 				</div>
 			</div>
 			
-			<div class="span8 pro-main">
+			<div class="pro-main">
 				<div class="pro-field">
 					<div class="post-form">
 						<textarea name="" id="msgfield" placeholder="说说项目的最新进度……" event-node="msgfield"></textarea>
 						<div class="post-action">
-							<a href="javascript:void(0);" class="at" title="提到好友"></a>
-							<a href="javascript:void(0);" class="photo" title="添加图片" onclick="doUpload();"></a>
-							<input type="button" onclick="doUpload()" value="添加图片">
-							<a href="javascript:void(0);" class="attach" title="添加文件"></a>
+							<a href="javascript:void(0);" class="act"><i class="at"></i>提到同事</a>
+							<a href="javascript:void(0);" class="act" onclick="doUpload();"><i class="photo"></i>添加图片</a>
+							<a href="javascript:void(0);" class="act"><i class="attach"></i>添加文件</a>
 							<a href="javascript:void(0);" id="doSendmsg" class="pull-right btn btn-primary disabled" event-node="sendmsg" event-args="id=<%= project._id %>">发布</a>
 						</div>
-					</div>
-					<div class="post-other">
-						<a href="javascript:void(0);">任务</a>
-						<a href="javascript:void(0);">需求</a>
-						<a href="javascript:void(0);">Bug</a>
 					</div>
 				</div>
 				<div class="pro-feed">
 					<% feed.forEach(function (value, index) { %>
-						<dl class="feed-item" id="feed<%= value._id %>" model-node="feedList">
+						<dl class="feed-item <% if(count > 1 && index < count-1) { %> line<% } %>" id="feed<%= value._id %>" model-node="feedList">
 							<dt class="head">
-								<a href="" class="avatar"><img src="/img/avatar.jpg" width="60" height="60" class="img-circle"></a>
+								<a href="" class="avatar"><img src="/img/avatar.jpg" width="60" height="60" class="avatar-medium"></a>
 								<h5><a href="/user/<%= value.uid %>"><%= value.name %></a></h5>
 								<p class="feed-info">
 									<span>
@@ -65,10 +66,10 @@
 			</div>
 		</div>
 
-		<div class="container pull-right span4 sidebar">
+		<div class="container pull-right span5 sidebar">
 			<div class="well sidebox">
 				<h5>项目进度</h5>
-
+				<div class="progress progress-warning"><div class="bar" style="width: 40%;">40%</div></div>
 			</div>
 			<div class="well sidebox">
 				<h5>项目文件</h5>
@@ -76,28 +77,19 @@
 			</div>
 			<div class="well sidebox">
 				<h5>项目成员</h5>
-
+				<ul class="userlist">
+					<% members.forEach(function (value, index) { %>
+						<li class="<% if((index+1)/4|0 == 1) { %><% } else { %>mr20<% } %>">
+							<a href="/user/<%=value._id %>" target="_blank"><img src="/img/avatar.jpg" width="60" height="60" class="avatar-side"></a>
+							<p><a href="/user/<%=value._id %>" target="_blank"><%=value.name %></a></p>
+						</li>
+					<% })%>
+				</ul>
+				
 			</div>
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="/js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="/js/flateam-project.js"></script>
-<script type="text/javascript" src="/js/jquery.upload.js"></script>
-<script type="text/javascript">
-	function doUpload() {
-	$.upload({
-		url: '/project/uploadPhoto', 
-		// fileName: 'filedata', 
-		// params: {name: 'pxblog'},
-		dataType: 'json',
-		onSend: function() {
-			return true;
-		},
-		onComplate: function(data) {
-			console.log(333);
-			console.log(data);
-		}
-	});
-}
-</script>
 <%- include ../footer.html %>

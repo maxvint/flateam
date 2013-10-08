@@ -746,7 +746,7 @@ h5 small,
 h6 small {
   font-weight: normal;
   line-height: 1;
-  color: #999999;
+  color: #999;
 }
 
 h1,
@@ -780,19 +780,19 @@ h6 {
 }
 
 h1 small {
-  font-size: 24px;
+  font-size: 34px;
 }
 
 h2 small {
-  font-size: 18px;
+  font-size: 28px;
 }
 
 h3 small {
-  font-size: 14px;
+  font-size: 20px;
 }
 
 h4 small {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .page-header {
@@ -846,10 +846,6 @@ dl {
 dt,
 dd {
   line-height: 20px;
-}
-
-dt {
-  font-weight: bold;
 }
 
 dd {
@@ -1022,14 +1018,14 @@ fieldset {
 
 legend {
   display: block;
-  width: 100%;
+  margin: 0 10px;
   padding: 0;
-  margin-bottom: 20px;
-  font-size: 21px;
-  line-height: 40px;
-  color: #333333;
+  width: 100%;
+  font-size: 14px;
+  line-height: 28px;
+  color: #666;
   border: 0;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #eee;
 }
 
 legend small {

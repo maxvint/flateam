@@ -1,4 +1,5 @@
 var models = require('../models');
+var User = models.User;
 var Task = models.Task;
 var Project = models.Project;
 var Reply = models.Reply;
@@ -86,7 +87,6 @@ exports.doFinish = function (req, res, next) {
 }
 
 exports.doRemove = function (req, res, next) {
-  console.log(req.params);
   Task.remove({_id: req.params.id}, function (err, result) {
     if (!err) {
       // 删除任务同时，删除任务的评论
@@ -99,6 +99,32 @@ exports.doRemove = function (req, res, next) {
       res.json({status: 'error'});
     }
   });
+}
+
+exports.forward = function (req, res, next) {
+  var id = req.params.id;
+  // 获取任务
+  Task.findOne({_id: req.params.id}, function (err, task) {
+    if (!err) {
+      // 获取自己以外的项目成员
+      Project.findOne({_id: task.pid}, function (err, project) {
+        if (!err) {
+          var index = project.member.indexOf(req.session.user._id);
+          if(index >= 0) {
+            project.member.splice(index, 1);
+            User.find({_id: {$in: project.member}}, function (err, member) {
+              if (!err) {
+                res.render('task/forward', {
+                  member: member
+                });
+              }
+            });
+          }
+        }
+      });
+    }
+  });
+  
 }
 
 exports.doForward = function (req, res, next) {

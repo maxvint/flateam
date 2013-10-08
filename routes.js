@@ -44,6 +44,8 @@ module.exports = function(app) {
   app.get('/project/:pid', auth.checkLogin, project.show);
   app.post('/project/doPost', auth.checkLogin, project.doPost);
   app.post('/project/doRemove/:pid', auth.checkLogin, project.doRemove);
+  app.post('/project/doJoin/:id', auth.checkLogin, project.doJoin);
+  app.post('/project/doUnjoin/:id', auth.checkLogin, project.doUnjoin);
   app.post('/project/doAddFeed',  auth.checkLogin, project.doAddFeed);
   app.post('/project/doDelFeed/:id', auth.checkLogin, project.doDelFeed);
   app.post('/project/uploadPhoto', auth.checkLogin, project.uploadPhoto);
@@ -53,9 +55,11 @@ module.exports = function(app) {
   app.get('/task/post', auth.checkLogin, task.post);
   // app.get('/task/reply/:id', auth.checkLogin, task.reply);
   app.get('/task/:id', auth.checkLogin, task.show);
+  app.get('/task/forward/:id', auth.checkLogin, task.forward);
   app.post('/task/doPost', auth.checkLogin, task.doPost);
   app.post('/task/doFinish/:id', auth.checkLogin, task.doFinish);
   app.post('/task/doRemove/:id', auth.checkLogin, task.doRemove);
+  app.post('/task/doForward/:id', auth.checkLogin, task.doForward);
   app.post('/task/replyPost/:post_id/:content', auth.checkLogin, task.replyPost);
   app.post('/task/replyRemove/:id', auth.checkLogin, task.replyRemove);
 

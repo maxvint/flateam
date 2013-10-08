@@ -1,4 +1,5 @@
 var models = require('../models');
+var User = models.User;
 var Project = models.Project;
 var Feed = models.Feed;
 
@@ -11,24 +12,27 @@ exports.index = function (req, res, next) {
   var perpage = 15;
   var page = req.query.p ? parseInt(req.query.p) : 1;
 
-  Project.count({uid: req.session.user._id}, function (err, res) {
+  Project.count({}, function (err, res) {
     count = res;
   });
 
-  Project.find({uid: req.session.user._id}, '', {skip: (page - 1)*perpage, limit: perpage, sort: [['ctime', 'desc' ]]}, function (err, result) {
-    result.forEach(function (data) {
+  Project.find({}, '', {skip: (page - 1)*perpage, limit: perpage, sort: [['ctime', 'desc' ]]}, function (err, project) {
+
+
+    project.forEach(function (data) {
+
       // (data.end > date) ? data.status = '未完成' : data.status = '已完成';
     });
     res.render('project/index', {
       title: '项目主页',
       alias: 'project',
       user: req.session.user,
-      list: result,
+      list: project,
       page: page,
       count: count,
       perpage: perpage,
       isFirstPage: (page - 1) == 0,
-      isLastPage: ((page - 1)*perpage + result.length) == total,
+      isLastPage: ((page - 1)*perpage + project.length) == total,
       success: req.flash('success').toString(),
       error: req.flash('error').toString()
     });
@@ -60,40 +64,64 @@ exports.doPost = function (req, res, next) {
   var ctime = Math.round(new Date().getTime()/1000);
   var post = new Project({
     title: req.body.title,
-    name: req.session.user.name,
     uid: req.session.user._id,
+    name: req.session.user.name,
+    member: req.session.user._id,
     ctime: ctime
   });
-  post.save(function (err) {
+  post.save(function (err, project) {
     if(err) {
       return next(err);
     }
+    // 添加创建动态
+    var feed = new Feed({
+      pid: project._id,
+      uid: req.session.user._id,
+      name: req.session.user.name,
+      content: req.session.user.name + '创建了项目',
+      ctime: ctime,
+      status: 1
+    });
+    feed.save(function (err, result) {
+      if (err) {
+        return next(err);
+      }
+    });
     res.redirect('/project/');
   });
-
 }
 
 exports.show = function (req, res, next) {
   var pid = req.params.pid;
-  Project.findById(pid, '', function (err, result) {
-    // 获取项目feed
-    Feed.find({pid: pid}, '', {limit: 10, sort: [['ctime', 'desc' ]]},function (err, feed) {
-      
-      if (feed) {
-        feed.forEach(function (value) {
-          var date = Math.round(new Date().getTime()/1000);
-          value.ctimeFriendly = core.friendlyDate(value.ctime, date);
-        });
-      }
+  Project.findById(pid, '', function (err, project) {
+    // 判断当前用户是否已加入
+    (project.member.indexOf(req.session.user._id) >= 0) ? project.isJoin = 1 : project.isJoin = 0;
 
-      res.render('project/show', {
-        title: '我参与的项目',
-        alias: 'project',
-        user: req.session.user,
-        project: result,
-        feed: feed,
-        success: req.flash('success').toString(),
-        error: req.flash('error').toString()
+    // 获取项目成员
+    User.find({_id: {$in: project.member}}, function (err, member) {
+      var members = member;
+
+      // 获取项目进度
+
+      // 获取项目feed
+      Feed.find({pid: pid}, '', {limit: 10, sort: [['ctime', 'desc' ]]},function (err, feed) {
+        if (feed) {
+          feed.forEach(function (value) {
+            var date = Math.round(new Date().getTime()/1000);
+            value.ctimeFriendly = core.friendlyDate(value.ctime, date);
+          });
+        }
+        res.render('project/show', {
+          title: '我参与的项目',
+          alias: 'project',
+          user: req.session.user,
+          project: project,
+          feed: feed,
+          members: members,
+          count: feed.length,
+          success: req.flash('success').toString(),
+          error: req.flash('error').toString()
+        });
       });
     });
   });
@@ -115,6 +143,54 @@ exports.delay = function (req, res, next) {
     user: req.session.user,
     success: req.flash('success').toString(),
     error: req.flash('error').toString()
+  });
+}
+
+exports.doJoin = function (req, res, next) {
+  // 判断当前用户是否已加入，重组member数据
+  Project.findOne({_id: req.params.id}, function (err, project) {
+    if(project.member.indexOf(req.session.user._id) < 0) {
+      project.member.push(req.session.user._id);
+      Project.update({_id: req.params.id}, {member: project.member}, function (err, result) {
+        if (!err) {
+          // 添加动态
+          var ctime = Math.round(new Date().getTime()/1000);
+          var feed = new Feed({
+            pid: project._id,
+            uid: req.session.user._id,
+            name: req.session.user.name,
+            content: req.session.user.name + '加入了项目',
+            ctime: ctime,
+            status: 1
+          });
+          feed.save(function (err, result) {
+            if (err) {
+              return next(err);
+            }
+          });
+          res.json({status: 'success'});
+        } else {
+          res.json({status: 'error'});
+        }
+      });
+    }
+  });
+}
+
+exports.doUnjoin = function (req, res, next) {
+  // 判断当前用户在数组中的位置
+  Project.findOne({_id: req.params.id}, function (err, project) {
+    var index = project.member.indexOf(req.session.user._id);
+    if (index >= 0) {
+      project.member.splice(index, 1);
+      Project.update({_id: req.params.id}, {member: project.member}, function (err, result) {
+        if (!err) {
+          res.json({status: 'success'});
+        } else {
+          res.json({status: 'error'});
+        }
+      });
+    }
   });
 }
 

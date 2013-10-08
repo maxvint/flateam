@@ -115,19 +115,31 @@
 }
 
 /*avatar*/
-.avatar-small {
+.avatar-medium, 
+.avatar-small,
+.avatar-tiny {
   float: left;
+}
+
+.avatar-medium {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+
+.avatar-small {
   margin: 5px 3px 0 0;
   width: 30px;
   height: 30px;
   border-radius: 15px;
+  
 }
 .avatar-tiny {
-  float: left;
   margin: 5px 3px 0 0;
   width: 16px;
   height: 16px;
   border-radius: 8px;
+  
 }
 
 
@@ -142,7 +154,7 @@
   margin: 5px 0 0 0;
 }
 .sidebox {
-  padding: 5px 20px;
+  padding: 5px 20px 15px;
 }
 
 
@@ -249,96 +261,112 @@
   margin: 4px 2px 0 0;
 }
 
+/*sidebox*/
+.sidebox .userlist {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+.sidebox .userlist li {
+  display: inline-block;
+  float: left;
+  width: 70px;
+  height: 100px;
+}
+.sidebox .userlist li a {
+  display: inline-block;
+}
+.sidebox .userlist li p {
+  text-align: center;
+}
+.sidebox .userlist li a img {
+  margin: 0 5px;
+  border-radius: 30px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.sidebox .userlist li a img:hover {
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+}
+
 /*project module*/
 .pro-field {
   float: left;
   padding: 20px;
-  width: 580px;
+  width: 500px;
   background: #eee;
 }
 .pro-field textarea {
   float: left;
   margin: 0;
-  width: 356px;
-  height: 54px;
-}
-.pro-field .post-other {
-  float: right;
-  width: 210px;
-  height: 70px;
-}
-.pro-field .post-other a {
-  float: left;
-  padding: 40px 0 0 0;
-  width: 69px;
-  height: 28px;
-  line-height: 28px;
-  border: 1px solid #ccc;
-  border-left: none;
-  background: #fff;
-  text-align: center;
-  vertical-align: middle;
+  width: 486px;
+  height: 44px;
 }
 .pro-field .post-form {
   float: left;
-  width: 370px;
-}
-.pro-field .post-other a:hover {
-  background: #f9f9f9;
+  width: 500px;
 }
 .pro-main .pro-field .post-action {
+  display: none;
   float: left;
   padding: 8px 0 0 0;
-  width: 370px;
+  width: 500px;
 }
-.pro-main .post-action a.at,
-.pro-main .post-action .photo,
-.pro-main .post-action a.attach {
+.pro-main .post-action a.act {
   float: left;
-  margin: 5px 20px 0 0;
+  margin: 3px 0 0 0;
+  width: 120px;
+  color: #999;
+}
+.pro-main .post-action a:hover {
+  color: #333;
+  text-decoration: none;
+}
+.pro-main .post-action i.at,
+.pro-main .post-action i.photo,
+.pro-main .post-action i.attach {
+  float: left;
+  margin: 2px 2px 0 0;
   width: 24px;
   height: 24px;
   background: url("../img/ico.png") no-repeat;
   z-index: 10;
 }
-.pro-main .post-action a.at {
-  background-position: -120px -30px;
-}
-.pro-main .post-action .photo {
-  background-position: -150px -30px;
-}
-.pro-main .post-action a.attach {
-  background-position: -180px -30px;
-}
-.pro-main .post-action a.at:hover {
+.pro-main .post-action i.at {
   background-position: -120px 0;
 }
-.pro-main .post-action .photo:hover {
+.pro-main .post-action i.photo {
   background-position: -150px 0;
 }
-.pro-main .post-action a.attach:hover {
+.pro-main .post-action i.attach {
   background-position: -180px 0;
 }
 .pro-main .post-action a.btn {
-  padding: 6px 25px;
+  float: right;
+  padding: 6px 30px;
+  width: 40px;
+  color: #fff;
 }
 .pro-main .pro-feed {
   display: inline-block;
-  margin: 10px 0;
-  width: 620px;
+  margin: 20px 0;
+  width: 540px;
 }
 .pro-feed .feed-item {
   display: inline-block;
-  margin: 10px 0;
-  padding: 20px;
-  border: 1px solid #f1f1f1;
+  margin: 0;
+  padding: 0 0 10px 0;
   min-height: 80px;
+}
+.pro-feed .line {
+  background: url("../img/sprite.png") 1px 0 repeat-y;
 }
 .pro-feed .feed-item .head {
   display: inline-block;
   margin: 0;
-  padding: 0 0 10px 0;
-  width: 580px;
+  padding: 0;
+  width: 500px;
   height: 50px;
 }
 .pro-feed .feed-item .head .avatar {
@@ -348,20 +376,18 @@
   border-radius: 50px;
 }
 .pro-feed .feed-item .head h5 {
-  margin: 0 0 10px 60px;
-  height: 14px;
-  line-height: 14px;
+  margin: 0 0 0 60px;
+  height: 28px;
+  line-height: 28px;
 }
 .pro-feed .feed-item .feed-info {
   margin: 0 0 5px 60px;
   font-size: 12px;
   color: #999;
-
 }
 .pro-feed .feed-item .body {
   display: inline-block;
-  margin: 0;
-  width: 580px;
+  margin: 0 0 0 60px;
 }
 .pro-feed .feed-item .feed-body {
   line-height: 24px;
@@ -370,9 +396,10 @@
   word-break: break-all;
 }
 .pro-feed .feed-item .foot {
-  margin: 0;
-  padding: 0;
+  margin: 0 0 5px 60px;
+  padding: 0 0 10px 0;
   height: 40px;
+  border-bottom: 1px dotted #ddd;
 }
 .pro-feed .feed-item .foot input {
 

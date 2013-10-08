@@ -55,7 +55,7 @@ var removeTask = function(id) {
 }
 
 var forwardTask = function(id) {
-  
+  ui.load('/task/forward/' + id, '请选择要转让的同事');
 }
 
 var replyPost = function(post_id, content) {

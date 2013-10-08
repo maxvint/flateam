@@ -2,7 +2,7 @@
   <h5>任务详情<button type="button" class="close" onclick="closeDetail();" title="关闭">×</button></h5>
   <h3><%= task.title %></h3>
   <div class="btn-group mt10">
-    <a href="javascript:void(0);" class="mr20 btn btn-warning" event-node="delay"><i class="icon-share-alt icon-white"></i>转让</a>
+    <a href="javascript:void(0);" onclick="forwardTask('<%= task._id%>');" class="mr20 btn btn-warning"><i class="icon-share-alt icon-white"></i>转让</a>
     <a href="javascript:void(0);" class="mr20 btn btn-primary" event-node="delay"><i class="icon-eye-close icon-white"></i>私密</a>
     <a href="javascript:void(0);" onclick="removeTask('<%= task._id%>');" class="btn btn-danger"><i class="icon-remove icon-white"></i>删除</a>
   </div><hr>
@@ -15,12 +15,12 @@
     </form>
   </div>
   <ul class="reply-list">
-    <% reply.forEach(function (data, index) { %>
-      <li id="item_<%= data._id %>">
-        <a class="close ml10" onclick="replyRemove('<%= data._id %>');" title="删除">×</a>
-        <a href="/user/<%= data.uid %>"><img src="/img/avatar-small.jpg" class="avatar-tiny"></a> 
-        <a href="/user/<%= data.uid %>"><%= data.name %></a>
-        <%= data.content %>
+    <% reply.forEach(function (value, index) { %>
+      <li id="item_<%= value._id %>">
+        <a class="close ml10" onclick="replyRemove('<%= value._id %>');" title="删除">×</a>
+        <a href="/user/<%= value.uid %>"><img src="/img/avatar-small.jpg" class="avatar-tiny"></a> 
+        <a href="/user/<%= value.uid %>"><%= value.name %></a>
+        <%= value.content %>
       </li>
     <% }) %>
   </ul>

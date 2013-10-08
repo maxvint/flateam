@@ -27,5 +27,7 @@ exports.friendlyDate = function(sTime, cTime) {
   } else {
     return sDate.getFullYear() + '-' + formatTime(sDate.getMonth() + 1) + '-' + formatTime(sDate.getDate()) + ' ' + formatTime(sDate.getHours()) + ':' + formatTime(sDate.getMinutes());
   }
-
 }
+
+
+
