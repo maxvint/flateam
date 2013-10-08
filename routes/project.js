@@ -59,6 +59,7 @@ exports.post = function (req, res, next) {
   });
 }
 
+// 创建项目
 exports.doPost = function (req, res, next) {
   //写入数据库
   var ctime = Math.round(new Date().getTime()/1000);
@@ -153,6 +154,18 @@ exports.doJoin = function (req, res, next) {
       project.member.push(req.session.user._id);
       Project.update({_id: req.params.id}, {member: project.member}, function (err, result) {
         if (!err) {
+          // 加入数据写入user collection
+          User.findOne({_id: req.session.user._id}, function (err, user) {
+            if (!err && user.project.indexOf(req.params.id) < 0) {
+              user.project.push(req.params.id);
+              User.update({_id: req.session.user._id}, {project: user.project}, function (err, result) {
+                if (err) {
+                  return next(err);
+                }
+              })
+            }
+          });
+
           // 添加动态
           var ctime = Math.round(new Date().getTime()/1000);
           var feed = new Feed({
@@ -185,6 +198,20 @@ exports.doUnjoin = function (req, res, next) {
       project.member.splice(index, 1);
       Project.update({_id: req.params.id}, {member: project.member}, function (err, result) {
         if (!err) {
+          // 从user collection中删除当前项目
+          User.findOne({_id: req.session.user._id}, function (err, user) {
+            if (!err) {
+              var indexUser = user.project.indexOf(req.params.id);
+              if (indexUser >= 0) {
+                user.project.splice(indexUser, 1);
+                User.update({_id: req.session.user._id}, {project: user.project}, function (err, result) {
+                  if (err) {
+                    return next(err);
+                  }
+                });
+              }
+            }
+          });
           res.json({status: 'success'});
         } else {
           res.json({status: 'error'});

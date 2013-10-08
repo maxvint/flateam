@@ -10,39 +10,43 @@ exports.index = function (req, res, next) {
   var perpage = 15;
   var page = req.query.p ? parseInt(req.query.p) : 1;
 
-  Task.count({uid: req.session.user._id}, function (err, res) {
-    count = res;
-  });
-
-  Task.find({uid: req.session.user._id}, '', {skip: (page - 1)*perpage, limit: perpage, sort: {status: 1, ctime: -1}}, function (err, result) {
-    res.render('task/index', {
-      title: '任务',
-      alias: 'task',
-      user: req.session.user,
-      list: result,
-      count: count,
-      success: req.flash('success').toString(),
-      error: req.flash('error').toString()
-    });
+  // 获取参与的项目
+  User.findOne({_id: req.session.user._id}, function (err, user) {
+    if (!err) {
+      Project.find({_id: {$in: user.project}}, function (err, project) {
+        Task.find({uid: req.session.user._id}, '', {skip: (page - 1)*perpage, limit: perpage, sort: {status: 1, ctime: -1}}, function (err, task) {
+          res.render('task/index', {
+            title: '任务',
+            alias: 'task',
+            user: req.session.user,
+            task: task,
+            project: project,
+            count: task.length,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+          });
+        });
+      });
+    }
   });
 }
 
 exports.post = function (req, res, next) {
   var count;
   // 获取当前用户参与的项目
-  Project.count({uid: req.session.user._id}, function (err, res) {
-    count = res;
-  });
-  Project.find({uid: req.session.user._id}, '', {sort: [['ctime', 'desc' ]]}, function (err, result) {
-    res.render('task/post', {
-      title: '添加任务',
-      alias: 'task',
-      user: req.session.user,
-      list: result,
-      count: count,
-      success: req.flash('success').toString(),
-      error: req.flash('error').toString()
-    });
+  User.findOne({_id: req.session.user._id}, function (err, user) {
+    if (!err) {
+      Project.find({_id: {$in: user.project}}, function (err, project) {
+        res.render('task/post', {
+          title: '添加任务',
+          alias: 'task',
+          user: req.session.user,
+          list: project,
+          success: req.flash('success').toString(),
+          error: req.flash('error').toString()
+        });
+      });
+    }
   });
 }
 

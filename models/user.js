@@ -6,6 +6,7 @@ var UserSchema = new Schema({
   email: {type: String},
   password: {type: String},
   name: {type: String},
+  project: [],
 });
 
 mongoose.model('User', UserSchema);
