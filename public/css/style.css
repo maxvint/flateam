@@ -290,6 +290,27 @@
   filter: alpha(opacity=100);
 }
 
+/*modal-body userlist*/
+.modal-body .userlist {
+  display: inline-block;
+  margin: 0
+}
+.modal-body .userlist li {
+  float: left;
+  margin: 0 10px 0 0;
+  width: 90px;
+  height: 90px;
+  list-style: none;
+  text-align: center;
+}
+.modal-body .userlist li img {
+  margin: 0 20px;
+}
+.modal-body .userlist li p {
+  font-size: 14px;
+  line-height: 28px;
+}
+
 /*project module*/
 .pro-field {
   float: left;

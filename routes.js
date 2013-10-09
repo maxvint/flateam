@@ -59,7 +59,7 @@ module.exports = function(app) {
   app.post('/task/doPost', auth.checkLogin, task.doPost);
   app.post('/task/doFinish/:id', auth.checkLogin, task.doFinish);
   app.post('/task/doRemove/:id', auth.checkLogin, task.doRemove);
-  app.post('/task/doForward/:id', auth.checkLogin, task.doForward);
+  app.post('/task/doForward/:tid/:uid/:name', auth.checkLogin, task.doForward);
   app.post('/task/replyPost/:post_id/:content', auth.checkLogin, task.replyPost);
   app.post('/task/replyRemove/:id', auth.checkLogin, task.replyRemove);
 

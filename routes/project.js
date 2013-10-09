@@ -71,24 +71,35 @@ exports.doPost = function (req, res, next) {
     ctime: ctime
   });
   post.save(function (err, project) {
-    if(err) {
-      return next(err);
+    if (!err) {
+      // 更新user collection
+      User.findOne({_id: req.session.user._id}, function (err, user) {
+        if (!err && user.project.indexOf(project._id) < 0) {
+          user.project.push(project._id);
+          User.update({_id: req.session.user._id}, {project: user.project}, function (err, result) {
+            if (err) {
+              return next(err);
+            }
+          })
+        }
+      });
+
+      // 添加创建动态
+      var feed = new Feed({
+        pid: project._id,
+        uid: req.session.user._id,
+        name: req.session.user.name,
+        content: req.session.user.name + '创建了项目',
+        ctime: ctime,
+        status: 1
+      });
+      feed.save(function (err, result) {
+        if (err) {
+          return next(err);
+        }
+      });
+      res.redirect('/project/');
     }
-    // 添加创建动态
-    var feed = new Feed({
-      pid: project._id,
-      uid: req.session.user._id,
-      name: req.session.user.name,
-      content: req.session.user.name + '创建了项目',
-      ctime: ctime,
-      status: 1
-    });
-    feed.save(function (err, result) {
-      if (err) {
-        return next(err);
-      }
-    });
-    res.redirect('/project/');
   });
 }
 

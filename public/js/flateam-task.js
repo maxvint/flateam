@@ -40,7 +40,7 @@ var closeDetail = function() {
   $('#recent').removeClass('hide').addClass('a-fadein');
 }
 
-var removeTask = function(id) {
+var taskRemove = function(id) {
   var doRemove = function() {
     $.post('/task/doRemove/' + id, function(res) {
       if(res.status == 'success') {
@@ -54,8 +54,18 @@ var removeTask = function(id) {
   ui.confirm(this, '您确定删除该任务？',doRemove);
 }
 
-var forwardTask = function(id) {
+var forward = function(id) {
   ui.load('/task/forward/' + id, '请选择要转让的同事');
+}
+
+var doForward = function(tid, uid, name) {
+  $.post('/task/doForward/' + tid + '/' + uid + '/' + name, function(res) {
+    if(res.status == 'success') {
+      location.href = '/task/';
+    } else {
+      ui.error('转让失败');
+    }
+  });
 }
 
 var replyPost = function(post_id, content) {

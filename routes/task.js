@@ -62,7 +62,7 @@ exports.doPost = function (req, res, next) {
     status: 0
   });
   post.save(function (err) {
-    if(err) {
+    if (err) {
       return next(err);
     }
     res.redirect('/task/');
@@ -119,6 +119,7 @@ exports.forward = function (req, res, next) {
             User.find({_id: {$in: project.member}}, function (err, member) {
               if (!err) {
                 res.render('task/forward', {
+                  pid: id,
                   member: member
                 });
               }
@@ -128,11 +129,19 @@ exports.forward = function (req, res, next) {
       });
     }
   });
-  
 }
 
 exports.doForward = function (req, res, next) {
-  
+  Task.update({_id: req.params.tid}, {uid: req.params.uid, name:req.params.name}, function (err, result) {
+    if (!err) {
+      // 生成动态
+
+      // 发送消息
+      res.json({status: 'success'});
+    } else {
+      res.json({status: 'error'});
+    }
+  });
 }
 
 exports.show = function (req, res, next) {
@@ -146,15 +155,12 @@ exports.show = function (req, res, next) {
   });
 }
 
-
-
-
 exports.showReply = function (req, res, next) {
   // Replay.find({});
 }
 
 exports.replyPost = function (req, res, next) {
-  //写入数据库
+  // 讨论内容写入数据库
   var ctime = Math.round(new Date().getTime()/1000);
   var post = new Reply({
     post_id: req.params.post_id,

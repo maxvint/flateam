@@ -31,6 +31,15 @@
 						<div class="post-action">
 							<a href="javascript:void(0);" class="act"><i class="at"></i>提到同事</a>
 							<a href="javascript:void(0);" class="act" onclick="doUpload();"><i class="photo"></i>添加图片</a>
+
+							<form action="/project/upload" class="dropzone">
+  <div class="fallback">
+    <input name="file" type="file" multiple />
+  </div>
+</form>
+
+
+
 							<a href="javascript:void(0);" class="act"><i class="attach"></i>添加文件</a>
 							<a href="javascript:void(0);" id="doSendmsg" class="pull-right btn btn-primary disabled" event-node="sendmsg" event-args="id=<%= project._id %>">发布</a>
 						</div>
@@ -90,6 +99,6 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="/js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="/js/dropzone.js"></script>
 <script type="text/javascript" src="/js/flateam-project.js"></script>
 <%- include ../footer.html %>
