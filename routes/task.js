@@ -5,7 +5,6 @@ var Project = models.Project;
 var Reply = models.Reply;
 
 exports.index = function (req, res, next) {
-  var total;
   var count;
   var perpage = 15;
   var page = req.query.p ? parseInt(req.query.p) : 1;
@@ -38,8 +37,6 @@ exports.post = function (req, res, next) {
     if (!err) {
       Project.find({_id: {$in: user.project}}, function (err, project) {
         res.render('task/post', {
-          title: '添加任务',
-          alias: 'task',
           user: req.session.user,
           list: project,
           success: req.flash('success').toString(),
@@ -59,7 +56,8 @@ exports.doPost = function (req, res, next) {
     uid: req.session.user._id,
     name: req.session.user.name,
     ctime: ctime,
-    status: 0
+    status: 0,
+    personal: 0
   });
   post.save(function (err) {
     if (err) {
@@ -70,7 +68,6 @@ exports.doPost = function (req, res, next) {
 }
 
 exports.doFinish = function (req, res, next) {
-  var id = req.params.id;
   var status;
   Task.findOne({_id: req.params.id}, function (err, task) {
     (task.status == 0) ? status = 1: status = 0;
@@ -78,12 +75,18 @@ exports.doFinish = function (req, res, next) {
       if (!err) {
         res.json({
           status: 'success',
-          info: status,
+          info: {
+            status: status,
+            personal: task.personal
+          }
         });
       } else {
         res.json({
           status: 'error',
-          info: status,
+          info: {
+            status: status,
+            personal: task.personal
+          }
         });
       }
     });
@@ -132,7 +135,8 @@ exports.forward = function (req, res, next) {
 }
 
 exports.doForward = function (req, res, next) {
-  Task.update({_id: req.params.tid}, {uid: req.params.uid, name:req.params.name}, function (err, result) {
+  // 更新uid、name、personal
+  Task.update({_id: req.params.tid}, {uid: req.params.uid, name:req.params.name, personal: 0}, function (err, result) {
     if (!err) {
       // 生成动态
 
@@ -143,6 +147,33 @@ exports.doForward = function (req, res, next) {
     }
   });
 }
+
+exports.doPersonal = function (req, res, next) {
+  var personal;
+  Task.findOne({_id: req.params.id}, function (err, task) {
+    (task.personal == 0) ? personal = 1: personal = 0;
+    Task.update({_id: req.params.id}, {personal: personal}, function (err, result) {
+      if (!err) {
+        res.json({
+          status: 'success',
+          info: {
+            status: task.status,
+            personal: personal
+          }
+        });
+      } else {
+        res.json({
+          status: 'error',
+          info: {
+            status: task.status,
+            personal: personal
+          }
+        });
+      }
+    });
+  });
+}
+
 
 exports.show = function (req, res, next) {
   Task.findOne({_id: req.params.id}, function (err, task) {

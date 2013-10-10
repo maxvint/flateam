@@ -2,13 +2,14 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-var TaskSchema = new Schema({
-  pid: {type: ObjectId},
+var ProductSchema = new Schema({
   title: {type: String},
   uid: {type: ObjectId},
   name: {type: String},
-  ctime: {type: Number},
-  status: {type: Number},
-  personal: {type: Number}
+  project: [],
+  demand: [],
+  bug: [],
+  ctime: {type: Number}
 });
-mongoose.model('Task', TaskSchema);
+
+mongoose.model('Product', ProductSchema);

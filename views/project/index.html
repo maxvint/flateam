@@ -11,7 +11,7 @@
 			<a href="javascript:void(0);" event-node="post" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i>创建项目</a>
 		</div>
 		<ul class="main-list">
-			<% list.forEach(function (data, index) { %>
+			<% project.forEach(function (data, index) { %>
 			<li id="<%= data._id %>">
 				<a href="javascript:void(0);" class="stick" event-node="stick" event-args="id=<%= data._id%>" title="置顶"></a>
 				<a href="/project/<%= data._id %>" class="block">

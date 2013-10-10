@@ -1,0 +1,38 @@
+<form action="/demand/doPost" method="post" class="form-horizontal">
+	<div class="control-group">
+		<label for="product" class="ml10"><strong class="require">*</strong>选择产品：</label>
+		<div class="span4">
+			<select name="product">
+				<% product.forEach(function (value, index) { %>
+				<option value="<%=value._id %>"><%=value.title %></option>
+				<% }) %>
+			</select>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="title" class="ml10"><strong class="require">*</strong>需求名称：</label>
+		<div class="span4">
+			<input type="text" name="title" class="input-xxlarge" id="title" placeholder="请输入需求名称">
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="content" class="ml10">需求描述</label>
+		<div class="span4">
+			<textarea name="content" class="input-xxlarge" id="content" rows="4" placeholder="建议模板：作为一名<某种类型的用户>，我希望<达成某些目的>，这样可以<开发的价值>。"></textarea>
+		</div>
+	</div>
+</form>
+
+<script type="text/javascript">
+	$('#title').focus();
+	$('.form-horizontal').validate({
+		rules: {
+			product: 'required',
+			title: 'required',
+		},
+		messages: {
+			product: '请您选择所属项目',
+			title: '请您输入需求名称',
+		},
+	});
+</script>

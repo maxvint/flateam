@@ -12,16 +12,18 @@ var auth = require('./common/auth');
 var site = require('./routes/index');
 var user = require('./routes/user');
 
-var project = require("./routes/project");
-var task = require("./routes/task");
-var demand = require("./routes/demand");
-var bug = require("./routes/bug");
-var doc = require("./routes/doc");
+
+var product = require('./routes/product');
+var project = require('./routes/project');
+var task = require('./routes/task');
+var demand = require('./routes/demand');
+var bug = require('./routes/bug');
 
 
 module.exports = function(app) {
-  // home page
+  // index page
   app.get('/', site.index);
+
 
   // login
   app.get('/login', site.login);
@@ -37,6 +39,12 @@ module.exports = function(app) {
   // user
   app.get('/user/:id', auth.checkLogin, user.index);
 
+  // product page
+  app.get('/product', auth.checkLogin, product.index);
+  app.get('/product/post', auth.checkLogin, product.post);
+
+  app.post('/product/doPost', auth.checkLogin, product.doPost);
+  
   // project page
   app.get('/project', auth.checkLogin, project.index);
   app.get('/project/post', auth.checkLogin, project.post);
@@ -58,6 +66,7 @@ module.exports = function(app) {
   app.get('/task/forward/:id', auth.checkLogin, task.forward);
   app.post('/task/doPost', auth.checkLogin, task.doPost);
   app.post('/task/doFinish/:id', auth.checkLogin, task.doFinish);
+  app.post('/task/doPersonal/:id', auth.checkLogin, task.doPersonal);
   app.post('/task/doRemove/:id', auth.checkLogin, task.doRemove);
   app.post('/task/doForward/:tid/:uid/:name', auth.checkLogin, task.doForward);
   app.post('/task/replyPost/:post_id/:content', auth.checkLogin, task.replyPost);
@@ -65,11 +74,13 @@ module.exports = function(app) {
 
   // demand page
   app.get('/demand', auth.checkLogin, demand.index);
-
+  app.get('/demand/post', auth.checkLogin, demand.post);
+  
+  app.post('/demand/doPost', auth.checkLogin, demand.doPost);
+  
   // bug page
   app.get('/bug', auth.checkLogin, bug.index);
-
-  // doc page
-  app.get('/doc', auth.checkLogin, doc.index);
+  app.get('/bug/post', auth.checkLogin, bug.post);
   
+  app.post('/bug/doPost', auth.checkLogin, bug.doPost);
 };

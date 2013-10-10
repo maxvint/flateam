@@ -1,0 +1,29 @@
+<%- include ../header.html %>
+<div id="" class="container main">
+	<div class="row a-fadein">
+		<% if(count <= 0) { %>
+		<div class="main-add">
+			<a href="javascript:void(0);" event-node="post" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i>添加产品</a>
+			<p>还没有产品，立即添加一个吧！</p>
+		</div>
+		<% } else { %>
+		<div class="main-post">
+			<a href="javascript:void(0);" event-node="post" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i>添加产品</a>
+		</div>
+		<ul class="main-list">
+			<% product.forEach(function (value, index) { %>
+			<li id="product_<%= value._id %>" model-node="productList" model-args="id=<%= value._id %>">
+				<a href="javascript:void(0);" class="stick" event-node="stick" event-args="id=<%= value._id%>" title="置顶"></a>
+					<a href="/product/bug/<%=value._id %>" class="action btn btn-primary btn-large hide">Bug</a>
+					<a href="/product/demand/<%=value._id %>" class="action btn btn-primary btn-large hide">需求</a>
+				<a href="/product/<%= value._id %>" class="block">
+					<h5><%= value.title %></h5>
+				</a>
+			</li>
+			<% }) %>
+		</ul>
+		<% } %>
+	</div>
+</div>
+<script type="text/javascript" src="/js/flateam-product.js"></script>
+<%- include ../footer.html %>

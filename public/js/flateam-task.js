@@ -10,13 +10,17 @@ M.addEventFns({
   		$.post('/task/doFinish/' + args.id, function(res) {
   			if(res.status == 'success') {
   				var child = $('#task_' + args.id).find('a');
-				if(res.info == 0) {
-					child[0].className = 'finish';
-					child[1].className = 'block';
-				} else {
-					child[0].className = 'finished';
-					child[1].className = 'blocked';
-				}
+  				if(res.info.status == 0) {
+  					child[0].className = 'finish';
+  					child[1].className = 'block';
+  				} else {
+            if(res.info.personal == 1) {
+              child[0].className = 'personal';
+            } else {
+              child[0].className = 'finished';
+            }
+  					child[1].className = 'blocked';
+  				}
   			}
   		});
   	}
@@ -66,6 +70,27 @@ var doForward = function(tid, uid, name) {
       ui.error('转让失败');
     }
   });
+}
+
+var personal = function(id) {
+  $.post('/task/doPersonal/' + id, function(res) {
+    if(res.status == 'success') {
+      var child = $('#task_' + id).find('a');
+      if(res.info.personal == 1) {
+        child[0].className = 'personal';
+        $('#personal').html('<i class="icon-eye-open icon-white"></i>公开');
+      } else {
+        if(res.info.status == 1) {
+          child[0].className = 'finished';
+        } else {
+          child[0].className = 'finish';
+        }
+        $('#personal').html('<i class="icon-eye-close icon-white"></i>私密');
+      }
+    } else {
+      ui.error('操作失败');
+    }
+  }, 'json');
 }
 
 var replyPost = function(post_id, content) {

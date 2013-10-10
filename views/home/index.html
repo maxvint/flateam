@@ -1,7 +1,51 @@
 <%- include ../header.html %>
 <div id="" class="container main">
 	<div class="row a-fadein">
-		
+		<div class="container span7">
+			<div class="main-box">
+				<h4>产品</h4>
+
+			</div>
+			<div class="main-box">
+				<h4>项目</h4>
+
+			</div>
+			
+
+		</div>
+		<div class="container pull-right span5 sidebar">
+			<div class="well sidebox">
+				<div class="home-user">
+					<div class="user-avatar">
+						<a href=""><img src="/img/avatar.jpg" width="100" height="100" class="avatar-big"></a>
+					</div>
+					
+					<ul class="user-info">
+						<h3>
+							<a href="">庾文辉</a>
+							<span class="label label-info">项目经理</span>
+						</h3>
+						<li>手机：13379286932</li>
+						<li>邮箱：yuwenhui1986@163.com</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="well sidebox">
+				<h5>数据统计</h5>
+				<ul>
+
+				</ul>
+			</div>
+			<div class="well sidebox">
+				<h5>所有用户</h5>
+				<ul class="userlist-inline">
+					<% userlist.forEach(function(value, index) {  %>
+					<li><a href=""><img src="/img/avatar.jpg" width="30" height="30" class="avatar-small"> <%=value.name %></a><span class="ml20 label label-info">项目经理</span></li>
+					<% }) %>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 <%- include ../footer.html %>

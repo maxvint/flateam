@@ -1,24 +1,18 @@
 var models = require('../models');
 var User = models.User;
 var Project = models.Project;
+var Product = models.Product;
 var Feed = models.Feed;
 
 var core = require('../common/core');
 var fs = require('fs');
 
 exports.index = function (req, res, next) {
-  var total;
   var count;
   var perpage = 15;
   var page = req.query.p ? parseInt(req.query.p) : 1;
 
-  Project.count({}, function (err, res) {
-    count = res;
-  });
-
   Project.find({}, '', {skip: (page - 1)*perpage, limit: perpage, sort: [['ctime', 'desc' ]]}, function (err, project) {
-
-
     project.forEach(function (data) {
 
       // (data.end > date) ? data.status = '未完成' : data.status = '已完成';
@@ -27,12 +21,12 @@ exports.index = function (req, res, next) {
       title: '项目主页',
       alias: 'project',
       user: req.session.user,
-      list: project,
+      project: project,
       page: page,
-      count: count,
+      count: project.length,
       perpage: perpage,
       isFirstPage: (page - 1) == 0,
-      isLastPage: ((page - 1)*perpage + project.length) == total,
+      isLastPage: ((page - 1)*perpage + project.length) == count,
       success: req.flash('success').toString(),
       error: req.flash('error').toString()
     });
@@ -50,13 +44,17 @@ exports.my = function (req, res, next) {
 }
 
 exports.post = function (req, res, next) {
-  res.render('project/post', {
-    title: '创建项目',
-    alias: 'project',
-    user: req.session.user,
-    success: req.flash('success').toString(),
-    error: req.flash('error').toString()
+  // 获取产品列表
+  Product.find({}, function (err, product) {
+    console.log(product);
+    res.render('project/post', {
+      user: req.session.user,
+      product: product,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString()
+    });
   });
+  
 }
 
 // 创建项目

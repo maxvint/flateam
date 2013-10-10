@@ -1,7 +1,38 @@
 <%- include ../header.html %>
 <div id="" class="container main">
 	<div class="row a-fadein">
-		需求列表
+		<div class="container span7">
+			<% if(count <= 0) { %>
+			<div class="main-add">
+				<a href="javascript:void(0);" event-node="post" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i>提交需求</a>
+				<p>还没有提交过需求，立即提交一个吧！</p>
+			</div>
+			<% } else { %>
+			<div class="main-post">
+				<a href="javascript:void(0);" event-node="post" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i>提交需求</a>
+			</div>
+			<ul class="main-list">
+				<% demand.forEach(function (value, index) { %>
+				<li id="demand_<%= value._id %>">
+					<a href="javascript:void(0);" event-node="show" event-args="id=<%=value._id %>"><h5><%= value.title %></h5></a>
+				</li>
+				<% }) %>
+			</ul>
+			<% } %>
+		</div>
+
+		<div class="container pull-right span5 sidebar">
+			<div class="well sidebox" id="recent">
+				<h5>参与的产品</h5>
+				<ul>
+					<% project.forEach(function (value, index) { %>
+					<li><a href="/project/<%=value._id %>"><%=value.title %></a></li>
+					<% }) %>
+				</ul>
+			</div>
+			<div class="well sidebox hide" id="show"></div>
+		</div>
 	</div>
 </div>
+<script type="text/javascript" src="/js/flateam-demand.js"></script>
 <%- include ../footer.html %>

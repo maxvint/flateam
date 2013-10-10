@@ -11,6 +11,7 @@
 			<div>
 				<h2 class="pull-left"><small><a href="/project/<%=project._id %>"><%= project.title %></a></small></h2>
 				<div class="pull-right mt20">
+					<a href="javascript:void(0);" event-node="task" event-args="id=<%= project._id%>" class="btn btn-primary"><i class="icon-th-list icon-white"></i>团队任务</a>
 					<% if(project.uid == user._id) { %>
 						<a href="javascript:void(0);" event-node="manage" event-args="id=<%= project._id%>" class="btn btn-primary"><i class="icon-cog icon-white"></i>项目管理</a>
 						<!-- <a href="javascript:void(0);" event-node="remove" event-args="id=<%= project._id%>" class="btn btn-danger"><i class="icon-remove icon-white"></i>删除项目</a> -->
@@ -33,12 +34,10 @@
 							<a href="javascript:void(0);" class="act" onclick="doUpload();"><i class="photo"></i>添加图片</a>
 
 							<form action="/project/upload" class="dropzone">
-  <div class="fallback">
-    <input name="file" type="file" multiple />
-  </div>
-</form>
-
-
+							  	<div class="fallback">
+							    	<input name="file" type="file" multiple />
+							  	</div>
+							</form>
 
 							<a href="javascript:void(0);" class="act"><i class="attach"></i>添加文件</a>
 							<a href="javascript:void(0);" id="doSendmsg" class="pull-right btn btn-primary disabled" event-node="sendmsg" event-args="id=<%= project._id %>">发布</a>
@@ -79,6 +78,10 @@
 			<div class="well sidebox">
 				<h5>项目进度</h5>
 				<div class="progress progress-warning"><div class="bar" style="width: 40%;">40%</div></div>
+			</div>
+			<div class="well sidebox">
+				<h5>关联的产品</h5>
+
 			</div>
 			<div class="well sidebox">
 				<h5>项目文件</h5>

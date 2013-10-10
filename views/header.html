@@ -17,7 +17,6 @@
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap-modal.js"></script>
 	
-
 	<script type="text/javascript" src="/js/jquery.validation.js"></script>
 </head>
 <body>
@@ -27,11 +26,12 @@
 				<a class="brand" href="/" title="<%= title %>">Flateam</a>
 				<ul class="nav navbar-nav">
 					<li <% if (alias == 'index'){ %>class="active"<% } %>><a href="/">首页</a></li>
+					<li <% if (alias == 'product'){ %>class="active"<% } %>><a href="/product">产品</a></li>
 					<li <% if (alias == 'project'){ %>class="active"<% } %>><a href="/project">项目</a></li>
 					<li <% if (alias == 'task'){ %>class="active"<% } %>><a href="/task">任务</a></li>
 					<li <% if (alias == 'demand'){ %>class="active"<% } %>><a href="/demand">需求</a></li>
 					<li <% if (alias == 'bug'){ %>class="active"<% } %>><a href="/bug">Bug</a></li>
-					<li <% if (alias == 'doc'){ %>class="active"<% } %>><a href="/doc">文档</a></li>
+					
 					
 					<% if (user) { %>
 					<li>
