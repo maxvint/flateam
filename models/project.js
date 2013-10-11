@@ -12,4 +12,22 @@ var ProjectSchema = new Schema({
   status: {type: Number},
 });
 
+
+
+
+ProjectSchema.statics = {
+  list: function (options, cb) {
+    var criteria = options.criteria || {}
+    console.log(options);
+    this.find(criteria)
+      // .populate('user', 'name username')
+      .sort(options.sort)
+      .limit(options.perpage)
+      .skip(options.perpage * (options.page -1))
+      .exec(cb)
+  }
+}
+
+
+
 mongoose.model('Project', ProjectSchema);
