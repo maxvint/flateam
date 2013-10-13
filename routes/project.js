@@ -12,39 +12,13 @@ exports.index = function (req, res, next) {
   var perpage = 15;
   var page = req.query.p ? parseInt(req.query.p) : 1;
 
-
-  // var page = (req.param('page') > 0 ? req.param('page') : 1) - 1
-  // var perpage = 30
   var options = {
     perpage: perpage,
     page: page
-    
   };
 
-  // Project.find({}, '', {skip: (page - 1)*perpage, limit: perpage, sort: [['ctime', 'desc' ]]}, function (err, project) {
-  //   project.forEach(function (data) {
-
-  //     // (data.end > date) ? data.status = '未完成' : data.status = '已完成';
-  //   });
-  //   res.render('project/index', {
-  //     title: '项目主页',
-  //     alias: 'project',
-  //     user: req.session.user,
-  //     project: project,
-  //     page: page,
-  //     count: project.length,
-  //     perpage: perpage,
-  //     isFirstPage: (page - 1) == 0,
-  //     isLastPage: ((page - 1)*perpage + project.length) == count,
-  //     success: req.flash('success').toString(),
-  //     error: req.flash('error').toString()
-  //   });
-  // });
-  // var project = new Project({});
   Project.list(options, function(err, project) {
-    console.log(project);
     Project.count().exec(function (err, count) {
-      console.log(count);
       res.render('project/index', {
         title: '项目主页',
         alias: 'project',
@@ -60,8 +34,6 @@ exports.index = function (req, res, next) {
       })
     })
   });
-
-
 };
 
 exports.my = function (req, res, next) {
@@ -85,7 +57,6 @@ exports.post = function (req, res, next) {
       error: req.flash('error').toString()
     });
   });
-  
 }
 
 // 创建项目
@@ -176,14 +147,6 @@ exports.doRemove = function (req, res, next) {
     } else {
       res.json({status: 'error'});
     }
-  });
-}
-
-exports.delay = function (req, res, next) {
-  res.render('project/delay', {
-    user: req.session.user,
-    success: req.flash('success').toString(),
-    error: req.flash('error').toString()
   });
 }
 

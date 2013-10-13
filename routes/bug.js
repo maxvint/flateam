@@ -10,7 +10,7 @@ exports.index = function (req, res, next) {
   var perpage = 15;
   var page = req.query.p ? parseInt(req.query.p) : 1;
 
-  // 获取参与的项目
+  // 获取产品列表
   User.findOne({_id: req.session.user._id}, function (err, user) {
     if (!err) {
       Project.find({_id: {$in: user.project}}, function (err, project) {
@@ -66,6 +66,6 @@ exports.doPost = function (req, res, next) {
     if (err) {
       return next(err);
     }
-    res.redirect('/demand/');
+    res.redirect('/bug/');
   });
 }

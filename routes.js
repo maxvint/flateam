@@ -48,7 +48,6 @@ module.exports = function(app) {
   // project page
   app.get('/project', auth.checkLogin, project.index);
   app.get('/project/post', auth.checkLogin, project.post);
-  app.get('/project/delay', auth.checkLogin, project.delay);
   app.get('/project/:pid', auth.checkLogin, project.show);
   app.post('/project/doPost', auth.checkLogin, project.doPost);
   app.post('/project/doRemove/:pid', auth.checkLogin, project.doRemove);

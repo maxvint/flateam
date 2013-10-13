@@ -7,8 +7,8 @@
 	</div>
 	<div class="control-group">
 		<label for="product" class="ml10"><strong class="require">*</strong>选择产品：</label>
-		<div class="span4">
-			<select name="product">
+		<div class="span2">
+			<select name="product" class="input-medium">
 				<% product.forEach(function (value, index) { %>
 				<option value="<%=value._id %>"><%=value.title %></option>
 				<% }) %>
@@ -17,8 +17,30 @@
 	</div>
 	<div class="control-group">
 		<label for="module" class="ml10"><strong class="require">*</strong>选择模块：</label>
-		<div class="span4">
-			<select name="module">
+		<div class="span2">
+			<select name="module" class="input-medium">
+				<% product.forEach(function (value, index) { %>
+				<option value="<%=value._id %>"><%=value.title %></option>
+				<% }) %>
+			</select>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="module" class="ml10"><strong class="require">*</strong>优先级：</label>
+		<div class="span2">
+			<select name="module" class="input-medium">
+				<option value="1">优先级：低</option>
+				<option value="1">优先级：中</option>
+				<option value="1">优先级：高</option>
+				<option value="1">优先级：紧急</option>
+				<option value="1">优先级：严重</option>
+			</select>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="module" class="ml10"><strong class="require">*</strong>指派给：</label>
+		<div class="span2">
+			<select name="module" class="input-medium">
 				<% product.forEach(function (value, index) { %>
 				<option value="<%=value._id %>"><%=value.title %></option>
 				<% }) %>
