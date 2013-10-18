@@ -28,6 +28,7 @@ module.exports = function(app) {
   // login
   app.get('/login', site.login);
   app.post('/login', site.doLogin);
+  app.post('/ajaxLogin', site.ajaxLogin);
 
   // register
   app.get('/register', site.register);

@@ -1207,17 +1207,17 @@ input[type="checkbox"]:focus {
 
 input:-moz-placeholder,
 textarea:-moz-placeholder {
-  color: #999999;
+  color: #c9c9c9;
 }
 
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
-  color: #999999;
+  color: #c9c9c9;
 }
 
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
-  color: #999999;
+  color: #c9c9c9;
 }
 
 .radio,
@@ -4097,7 +4097,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .nav > li > a {
   float: none;
-  padding: 12px 28px;
+  padding: 15px 30px;
   color: #777777;
   text-decoration: none;
   text-shadow: 0 1px 0 #ffffff;

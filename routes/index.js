@@ -14,7 +14,6 @@ exports.index = function(req, res, next) {
   } else {
     // 获取所有用户
     User.find({}, function (err, userlist) {
-      console.log(userlist);
       res.render('home/index', {
         title: '主页',
         alias: 'index',
@@ -28,7 +27,6 @@ exports.index = function(req, res, next) {
 };
 
 exports.login = function(req, res, next) {
-
     res.render('login', {
       title: '登录',
       alias: 'index',
@@ -58,9 +56,30 @@ exports.doLogin = function(req, res, next) {
     req.flash('success', '登录成功!');
     res.redirect('/');
   });
+}
 
-  
-
+exports.ajaxLogin = function(req, res, next) {
+  var md5 = crypto.createHash('md5');
+  var password = md5.update(req.body.password).digest('hex');
+  User.findOne({email: req.body.email}, function(err, user) {
+    if (!user) {
+      res.json({
+        status: 'error',
+        info: '用户不存在'
+      });
+    } else if (user.password != password) {
+      res.json({
+        status: 'error',
+        info: '密码错误'
+      });
+    } else {
+      req.session.user = user;
+      res.json({
+        status: 'success',
+        info: '登录成功'
+      });
+    }
+  });
 }
 
 exports.register = function(req, res, next) {

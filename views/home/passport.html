@@ -8,22 +8,33 @@
 						<h1>Flateam = Flat + team</h1>
 						<h4>轻量级、扁平化项目管理工具</h4>
 						<h4>采用Node.js + Express + MongoDB开发</h4>
-						<h4>优雅、简洁、随时随地</h4>
-						<a href="./register" class="btn btn-large btn-primary btn-register"><i class="icon-user icon-white"></i>注册体验</a>
+						<h4>iOS、iPad、Android，移动办公随心所欲</h4>
+						<a href="./register" class="btn btn-large btn-primary btn-register"><i class="icon-user icon-white"></i>开始体验</a>
 						<a href="https://github.com/yuwenhui/flateam" class="btn btn-large btn-warning btn-download" target="_blank"><icon class="icon-circle-arrow-down icon-white"></icon>下载源码</a>
 					</div>
 				</div>
 				<div class="container span5">
-					<div class="login">
-						<form action="/doLogin" method="post" class="form-horizontal">
+					<div class="login" model-node="loginInput">
+						<form action="/ajaxLogin" method="post" id="doLogin" class="form-horizontal">
 							<div class="control-group">
 								<div class="span4">
-									<input type="text" name="email" id="email" class="input-xlarge" placeholder="请输入您的邮箱" />
+									<input type="text" name="email" id="email" class="input-xlarge" placeholder="请输入您的邮箱" autocomplete="off" />
+									<div class="email-list on-changes" style="z-index:999">
+										<p>请选择或继续输入...</p>
+										<ul>
+											<li email="" rel="show"></li>
+	                                  		<!-- <volist name="emailSuffix" id="vo"> -->
+	                                    	<li email="@163.com" rel="show"></li>
+	                                    	<li email="@126.com" rel="show"></li>
+	                                    	<li email="@qq.com" rel="show"></li>
+	                                  		<!-- </volist> -->
+                                    	</ul>
+                                  	</div>
 								</div>
 							</div>
 							<div class="control-group">
 								<div class="span4">
-									<input type="password" name="password" id="title" class="input-xlarge" placeholder="请输入密码" />
+									<input type="password" name="password" id="password" class="input-xlarge" placeholder="请输入登录密码" />
 								</div>
 							</div>
 							<div class="control-group">
@@ -37,9 +48,13 @@
 								<button type="submit" class="btn btn-large btn-primary">登录</button>
 							</div>
 						</form>
+						<div id="message" class="error-box a-fadein"><i class="icon-error"></i></div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </secrion>
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+<script type="text/javascript" src="/js/flateam-index.js"></script>
+<%- include ../footer.html %>
