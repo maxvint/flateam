@@ -3,22 +3,28 @@ var crypto = require('crypto');
 var User = models.User;
 
 exports.index = function(req, res, next) {
-
-  // 获取所有用户
-  User.find({}, function (err, userlist) {
-    console.log(userlist);
-    res.render('home/index', {
+  if (!req.session.user) {
+    res.render('home/passport', {
       title: '主页',
       alias: 'index',
       user: req.session.user,
-      userlist: userlist,
       success: req.flash('success').toString(),
       error: req.flash('error').toString()
     });
-  });
-
-
-    
+  } else {
+    // 获取所有用户
+    User.find({}, function (err, userlist) {
+      console.log(userlist);
+      res.render('home/index', {
+        title: '主页',
+        alias: 'index',
+        user: req.session.user,
+        userlist: userlist,
+        success: req.flash('success').toString(),
+        error: req.flash('error').toString()
+      });
+    });
+  }
 };
 
 exports.login = function(req, res, next) {

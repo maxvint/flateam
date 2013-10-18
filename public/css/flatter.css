@@ -4101,7 +4101,6 @@ input[type="submit"].btn.btn-mini {
   color: #777777;
   text-decoration: none;
   text-shadow: 0 1px 0 #ffffff;
-  border-bottom: 3px solid #fafafa;
 }
 
 .navbar .nav .dropdown-toggle .caret {
@@ -4113,7 +4112,6 @@ input[type="submit"].btn.btn-mini {
   color: #333333;
   text-decoration: none;
   background-color: #eeeeee;
-  border-bottom: 3px solid #dddddd;
 }
 
 .navbar .nav > .active > a,
@@ -4122,7 +4120,6 @@ input[type="submit"].btn.btn-mini {
   color: #ffffff;
   text-decoration: none;
   background-color: #01c675;
-  border-bottom: 3px solid #00a05e;
   text-shadow: 0 1px 0 #007543;
 }
 

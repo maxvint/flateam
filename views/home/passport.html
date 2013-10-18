@@ -1,0 +1,45 @@
+<%- include ../header.html %>
+<secrion class="passport">
+	<div class="inner">
+		<div id="" class="container main">
+			<div class="row a-fadein">
+				<div class="container span7">
+					<div class="intro">
+						<h1>Flateam = Flat + team</h1>
+						<h4>轻量级、扁平化项目管理工具</h4>
+						<h4>采用Node.js + Express + MongoDB开发</h4>
+						<h4>优雅、简洁、随时随地</h4>
+						<a href="./register" class="btn btn-large btn-primary btn-register"><i class="icon-user icon-white"></i>注册体验</a>
+						<a href="https://github.com/yuwenhui/flateam" class="btn btn-large btn-warning btn-download" target="_blank"><icon class="icon-circle-arrow-down icon-white"></icon>下载源码</a>
+					</div>
+				</div>
+				<div class="container span5">
+					<div class="login">
+						<form action="/doLogin" method="post" class="form-horizontal">
+							<div class="control-group">
+								<div class="span4">
+									<input type="text" name="email" id="email" class="input-xlarge" placeholder="请输入您的邮箱" />
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="span4">
+									<input type="password" name="password" id="title" class="input-xlarge" placeholder="请输入密码" />
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="span8">
+									<label class="checkbox">
+										<input type="checkbox" name="remember" id="remember" class="pull-left" value="1" />记住我，下次自动登录
+									</label>
+								</div>
+							</div>
+							<div class="form-login">
+								<button type="submit" class="btn btn-large btn-primary">登录</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</secrion>

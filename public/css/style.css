@@ -1,6 +1,3 @@
-
-
-
 /*间距*/
 .ml5{
   margin-left:5px;
@@ -149,9 +146,6 @@
   
 }
 
-
-
-
 /*common*/
 .main {
   min-height: 1200px;
@@ -251,9 +245,6 @@
 .main-list a.personal {
   background-position: -50px -145px;
 }
-
-
-
 .main-list .progress {
   float: right;
   margin: 25px 0 0 20px;
@@ -263,7 +254,6 @@
   float: right;
   margin: 10px;
 }
-
 .main-box {
   display: inline-block;
   margin: 0;
@@ -340,7 +330,80 @@
   margin-right: 10px;
 }
 
-
+/*passport*/
+.passport {
+  position: absolute;
+  margin: 0 auto;
+  width: 100%;
+  height: 1200px;
+}
+.passport .inner {
+  margin: 0 auto;
+  width: 100%;
+  height: 500px;
+  background: url("../img/bg.jpg") top center no-repeat;
+  background-size: cover;
+}
+.passport .intro {
+  padding: 30px 0 0 0;
+}
+.passport .intro h1 {
+  margin: 20px 0;
+  font-size: 50px;
+  color: #fff;
+  text-shadow: 0 0 1px #999;
+}
+.passport .intro h4 {
+  margin: 10px 0 0 30px;
+  color: #999;
+  line-height: 30px;
+  text-shadow: 0 0 1px #666;
+}
+.passport .intro .btn-register,
+.passport .intro .btn-download {
+  margin: 40px 0 0 30px;
+  padding: 15px 40px;
+  font-size: 28px;
+  line-height: 28px;
+}
+.passport .intro [class^="icon-"], [class*=" icon-"] {
+  margin: 0;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+.passport .intro .btn-register {
+  text-shadow: 0 1px 0 #007543;
+}
+.passport .intro .btn-download {
+  text-shadow: 0 1px 0 #777;
+}
+.passport .login {
+  float: right;
+  margin: 20px 0;
+  padding: 40px 20px;
+  width: 300px;
+  height: 280px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+.passport .login .input-xlarge {
+  margin: 0;
+  padding: 5px;
+  width: 270px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 18px;
+}
+.passport .login .form-login {
+  position: absolute;
+  padding: 0 10px;
+}
+.passport .login .form-login .btn {
+  width: 280px;
+  text-shadow: 0 1px 0 #007543;
+}
 
 /*modal-body userlist*/
 .modal-body .userlist {
