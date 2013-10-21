@@ -16,3 +16,9 @@ M.addEventFns({
     }
   }
 });
+
+var closeDetail = function() {
+  $('.demand-info').removeClass('a-fadein').addClass('a-fadeout');
+  $('#show').addClass('hide');
+  $('#recent').removeClass('hide').addClass('a-fadein');
+}

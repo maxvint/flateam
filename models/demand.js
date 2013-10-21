@@ -11,4 +11,13 @@ var DemandSchema = new Schema({
   ctime: {type: Number},
   status: {type: Number}
 });
+
+DemandSchema.statics = {
+  getShowById: function (options, callback) {
+    var query = options.query || {};
+    this.findOne(query)
+      .exec(callback);
+  }
+}
+
 mongoose.model('Demand', DemandSchema);

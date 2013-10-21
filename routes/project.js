@@ -31,8 +31,8 @@ exports.index = function (req, res, next) {
         isLastPage: ((page - 1)*perpage + project.length) == count,
         success: req.flash('success').toString(),
         error: req.flash('error').toString()
-      })
-    })
+      });
+    });
   });
 };
 

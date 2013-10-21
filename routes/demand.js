@@ -67,3 +67,17 @@ exports.doPost = function (req, res, next) {
     res.redirect('/demand/');
   });
 }
+
+exports.show = function (req, res, next) {
+  var options = {
+    _id: req.params.id,
+  };
+  Demand.getShowById(options, function(err, demand) {
+    res.render('demand/show', {
+      user: req.session.user,
+      demand: demand,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString()
+    });
+  });
+}

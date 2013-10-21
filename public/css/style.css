@@ -199,8 +199,7 @@
 .main-list li a:hover {
   text-decoration: none;
 }
-.main-list a.block, 
-.main-list a.blocked {
+.main-list a {
   display: block;
   height: 70px;
 }
@@ -223,27 +222,36 @@
 .main-list a.finished,
 .main-list a.personal {
   float: left;
-  margin: 10px;
-  padding: 5px 0;
+  margin: 15px;
   width: 40px;
   height: 40px;
   background: url("../img/ico.png") no-repeat;
 }
 .main-list a.stick {
-  background-position: -50px 5px;
+  background-position: -50px 0;
 }
 .main-list a.sticked,
 .main-list a.stick:hover {
-  background-position: -50px -45px;
+  background-position: -50px -50px;
+}
+.main-list a.stick:hover {
+  moz-transition: background .2s ease-in-out;
+  -o-transition: background .2s ease-in-out;
+  transition: background .2s ease-in-out;
+  -webkit-transition-property: color,background;
+  -webkit-transition-duration: .2s, 0.2s
 }
 .main-list a.finish {
-  background-position: -50px -95px;
+  background-position: 0 0;
 }
 .main-list a.finished {
-  background-position: 0 5px;
+  background-position: 0 -50px;
 }
 .main-list a.personal {
-  background-position: -50px -145px;
+  background-position: -50px -150px;
+}
+.main-list a.star {
+  background-position: 0 -200px;
 }
 .main-list .progress {
   float: right;

@@ -75,7 +75,7 @@ module.exports = function(app) {
   // demand page
   app.get('/demand', auth.checkLogin, demand.index);
   app.get('/demand/post', auth.checkLogin, demand.post);
-  
+  app.get('/demand/:id', auth.checkLogin, demand.show);
   app.post('/demand/doPost', auth.checkLogin, demand.doPost);
   
   // bug page

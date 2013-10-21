@@ -174,14 +174,13 @@ exports.doPersonal = function (req, res, next) {
   });
 }
 
-
 exports.show = function (req, res, next) {
   Task.findOne({_id: req.params.id}, function (err, task) {
     Reply.find({post_id: req.params.id}, '', {sort: [['ctime', 'desc' ]]}, function (err, reply) {
       res.render('task/show', {
         task: task,
         reply: reply
-      });  
+      });
     });
   });
 }
