@@ -13,7 +13,7 @@ var DemandSchema = new Schema({
 });
 
 DemandSchema.statics = {
-  getShowById: function (options, callback) {
+  getDemand: function(options, callback) {
     var query = options.query || {};
     this.findOne(query)
       .exec(callback);

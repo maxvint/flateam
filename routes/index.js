@@ -3,7 +3,7 @@ var crypto = require('crypto');
 var User = models.User;
 
 exports.index = function(req, res, next) {
-  if (!req.session.user) {
+  if(!req.session.user) {
     res.render('home/passport', {
       title: '主页',
       alias: 'index',
@@ -13,7 +13,7 @@ exports.index = function(req, res, next) {
     });
   } else {
     // 获取所有用户
-    User.find({}, function (err, userlist) {
+    User.find({}, function(err, userlist) {
       res.render('home/index', {
         title: '主页',
         alias: 'index',
@@ -42,12 +42,12 @@ exports.doLogin = function(req, res, next) {
   var password = md5.update(req.body.password).digest('hex');
   //检查用户是否存在
   User.findOne({email: req.body.email}, function(err, user) {
-    if (!user) {
+    if(!user) {
       req.flash('error', '用户不存在!'); 
       return res.redirect('/login'); //用户不存在则跳转到登录页
     }
     //检查密码是否一致
-    if (user.password != password) {
+    if(user.password != password) {
       req.flash('error', '密码错误!'); 
       return res.redirect('/login');//密码错误则跳转到登录页
     }
@@ -62,12 +62,12 @@ exports.ajaxLogin = function(req, res, next) {
   var md5 = crypto.createHash('md5');
   var password = md5.update(req.body.password).digest('hex');
   User.findOne({email: req.body.email}, function(err, user) {
-    if (!user) {
+    if(!user) {
       res.json({
         status: 'error',
         info: '用户不存在'
       });
-    } else if (user.password != password) {
+    } else if(user.password != password) {
       res.json({
         status: 'error',
         info: '密码错误'
@@ -97,7 +97,7 @@ exports.doRegister = function(req, res, next) {
   var password = req.body.password;
   var repassword = req.body['repassword'];
   //检验用户两次输入的密码是否一致
-  if (repassword != password) {
+  if(repassword != password) {
     req.flash('error', '两次输入密码不一致!'); 
     return res.redirect('/register');
   }
@@ -111,18 +111,18 @@ exports.doRegister = function(req, res, next) {
     name: req.body.name
   });
   User.find({email: req.body.email}, function(err, user) {
-    if (user.email) {
+    if(user.email) {
       req.flash('error', '您已注册，请直接登录!');
       return res.redirect('/login'); //用户名存在则返回注册页
     }
 
-    if (!newUser.name) {
+    if(!newUser.name) {
       var arr = newUser.email.split('@');
       newUser.name = arr[0];
     }
     //如果不存在则新增用户
     newUser.save(function(err) {
-      if (err) {
+      if(err) {
         req.flash('error', err);
         return res.redirect('/register');
       }

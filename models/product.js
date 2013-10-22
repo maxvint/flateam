@@ -12,4 +12,12 @@ var ProductSchema = new Schema({
   ctime: {type: Number}
 });
 
+ProductSchema.statics = {
+  getProduct: function(options, callback) {
+    var query = options.query || {};
+    this.findOne(query)
+      .exec(callback);
+  }
+}
+
 mongoose.model('Product', ProductSchema);

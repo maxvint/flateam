@@ -61,7 +61,6 @@ module.exports = function(app) {
   // task page
   app.get('/task', auth.checkLogin, task.index);
   app.get('/task/post', auth.checkLogin, task.post);
-  // app.get('/task/reply/:id', auth.checkLogin, task.reply);
   app.get('/task/:id', auth.checkLogin, task.show);
   app.get('/task/forward/:id', auth.checkLogin, task.forward);
   app.post('/task/doPost', auth.checkLogin, task.doPost);
@@ -77,10 +76,16 @@ module.exports = function(app) {
   app.get('/demand/post', auth.checkLogin, demand.post);
   app.get('/demand/:id', auth.checkLogin, demand.show);
   app.post('/demand/doPost', auth.checkLogin, demand.doPost);
+  app.post('/demand/doRemove/:id', auth.checkLogin, demand.doRemove);
+  app.post('/demand/replyPost/:post_id/:content', auth.checkLogin, demand.replyPost);
+  app.post('/demand/replyRemove/:id', auth.checkLogin, demand.replyRemove);
   
   // bug page
   app.get('/bug', auth.checkLogin, bug.index);
   app.get('/bug/post', auth.checkLogin, bug.post);
-  
+  app.get('/bug/:id', auth.checkLogin, bug.show);
   app.post('/bug/doPost', auth.checkLogin, bug.doPost);
+  app.post('/bug/doRemove/:id', auth.checkLogin, bug.doRemove);
+  app.post('/bug/replyPost/:post_id/:content', auth.checkLogin, bug.replyPost);
+  app.post('/bug/replyRemove/:id', auth.checkLogin, bug.replyRemove);
 };

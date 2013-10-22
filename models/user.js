@@ -9,4 +9,12 @@ var UserSchema = new Schema({
   project: [],
 });
 
+UserSchema.statics = {
+  getUser: function(options, callback) {
+    var query = options.query || {};
+    this.findOne(query)
+      .exec(callback);
+  }
+};
+
 mongoose.model('User', UserSchema);

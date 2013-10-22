@@ -5,44 +5,44 @@
 			<input type="text" name="title" class="input-xxlarge" id="title" placeholder="请输入Bug名称">
 		</div>
 	</div>
-	<div class="control-group">
+	<div class="control-group post-sel">
 		<label for="product" class="ml10"><strong class="require">*</strong>选择产品：</label>
 		<div class="span2">
 			<select name="product" class="input-medium">
-				<% product.forEach(function (value, index) { %>
+				<% product.forEach(function(value, index) { %>
 				<option value="<%=value._id %>"><%=value.title %></option>
 				<% }) %>
 			</select>
 		</div>
 	</div>
-	<div class="control-group">
+	<div class="control-group post-sel">
 		<label for="module" class="ml10"><strong class="require">*</strong>选择模块：</label>
 		<div class="span2">
 			<select name="module" class="input-medium">
-				<% product.forEach(function (value, index) { %>
+				<% product.forEach(function(value, index) { %>
 				<option value="<%=value._id %>"><%=value.title %></option>
 				<% }) %>
 			</select>
 		</div>
 	</div>
-	<div class="control-group">
-		<label for="module" class="ml10"><strong class="require">*</strong>优先级：</label>
+	<div class="control-group post-sel">
+		<label for="level" class="ml10">优先级：</label>
 		<div class="span2">
-			<select name="module" class="input-medium">
+			<select name="level" class="input-medium">
 				<option value="1">优先级：低</option>
-				<option value="1">优先级：中</option>
-				<option value="1">优先级：高</option>
-				<option value="1">优先级：紧急</option>
-				<option value="1">优先级：严重</option>
+				<option value="2">优先级：中</option>
+				<option value="3">优先级：高</option>
+				<option value="4">优先级：紧急</option>
+				<option value="5">优先级：严重</option>
 			</select>
 		</div>
 	</div>
-	<div class="control-group">
-		<label for="module" class="ml10"><strong class="require">*</strong>指派给：</label>
+	<div class="control-group post-sel">
+		<label for="toUid" class="ml10"><strong class="require">*</strong>指派给：</label>
 		<div class="span2">
-			<select name="module" class="input-medium">
-				<% product.forEach(function (value, index) { %>
-				<option value="<%=value._id %>"><%=value.title %></option>
+			<select name="toUid" class="input-medium">
+				<% users.forEach(function(value, index) { %>
+				<option value="<%=value._id %>"><%=value.name %></option>
 				<% }) %>
 			</select>
 		</div>
@@ -50,7 +50,7 @@
 	<div class="control-group">
 		<label for="content" class="ml10">Bug描述</label>
 		<div class="span4">
-			<textarea name="content" class="input-xxlarge" id="content" rows="4" placeholder="建议模板：作为一名<某种类型的用户>，我希望<达成某些目的>，这样可以<开发的价值>。"></textarea>
+			<textarea name="content" class="input-xxlarge" id="content" rows="4" placeholder="描述Bug产生的浏览器环境、步骤、结果。"></textarea>
 		</div>
 	</div>
 </form>
@@ -59,12 +59,12 @@
 	$('#title').focus();
 	$('.form-horizontal').validate({
 		rules: {
-			product: 'required',
 			title: 'required',
+			product: 'required'
 		},
 		messages: {
-			product: '请您选择所属项目',
 			title: '请输入Bug名称',
+			product: '请您选择产品'
 		},
 	});
 </script>

@@ -3,7 +3,7 @@
 		<label for="project" class="ml10"><strong class="require">*</strong>选择项目：</label>
 		<div class="span4">
 			<select name="project">
-				<% list.forEach(function (data, index) { %>
+				<% list.forEach(function(data, index) { %>
 				<option value="<%=data._id %>"><%=data.title %></option>
 				<% }) %>
 			</select>

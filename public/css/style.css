@@ -259,8 +259,10 @@
   width: 200px;
 }
 .main-list .action {
+  display: inline-block;
   float: right;
   margin: 10px;
+  height: 20px;
 }
 .main-box {
   display: inline-block;
@@ -337,6 +339,32 @@
 .sidebox .userlist-inline li img {
   margin-right: 10px;
 }
+
+.sidebox .reply-box .input-append .input-large {
+  margin-right: 10px;
+  width: 265px;
+}
+.sidebox .reply-box .input-append .btn-primary {
+  height: 36px;
+}
+.sidebox .reply-box .btn-group a {
+  width: 76px;
+  height: 30px;
+  line-height: 30px;
+}
+.sidebox .reply-box .reply-list {
+  margin: 0;
+}
+.sidebox .reply-box .reply-list li {
+  margin: 0 0 10px 0;
+  padding: 10px;
+  list-style: none;
+  background: #fff;
+}
+
+
+
+
 
 /*passport*/
 .passport {
@@ -503,6 +531,51 @@
 }
 
 /*home module*/
+.home-count {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+
+}
+.home-count li {
+  float: left;
+  width: 120px;
+  height: 95px;
+  list-style: none;
+}
+.home-count li.item-product {
+  background: #fa603d;
+}
+.home-count li.item-project {
+  background: #2fabe9;
+}
+.home-count li.item-demand {
+  background: #5aad34;
+}
+.home-count li.item-bug {
+  background: #e42b75;
+}
+.home-count li a,
+.home-count li a:hover {
+  display: block;
+  text-decoration: none;
+}
+.home-count li p {
+  margin: 0;
+  text-align: center;
+  color: #fff;
+}
+.home-count li p.num {
+  padding: 20px 0 0;
+  height: 40px;
+  line-height: 40px;
+  font-size: 40px;
+}
+.home-count li p.title {
+  height: 35px;
+  line-height: 35px;
+}
+
 .home-user {
   display: inline-block;
 }
@@ -647,27 +720,8 @@
 }
 
 
-/*task-info*/
-.task-info .input-append .input-large {
-  margin-right: 10px;
-  width: 265px;
+/*bug module*/
+.post-sel {
+  float: left;
+  width: 225px;
 }
-.task-info .input-append .btn-primary {
-  height: 36px;
-
-}
-.task-info .btn-group a {
-  width: 76px;
-  height: 30px;
-  line-height: 30px;
-}
-.task-info .reply-list {
-  margin: 0;
-}
-.task-info .reply-list li {
-  margin: 0 0 10px 0;
-  padding: 10px;
-  list-style: none;
-  background: #fff;
-}
-

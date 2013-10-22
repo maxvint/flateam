@@ -1,4 +1,4 @@
-<div class="task-info a-fadein">
+<div class="reply-box task-info a-fadein">
   <h5>任务详情<button type="button" class="close" onclick="closeDetail();" title="关闭">×</button></h5>
   <h3><%= task.title %></h3>
   <div class="btn-group mt10">
@@ -21,7 +21,7 @@
     </form>
   </div>
   <ul class="reply-list">
-    <% reply.forEach(function (value, index) { %>
+    <% reply.forEach(function(value, index) { %>
       <li id="item_<%= value._id %>">
         <a class="close ml10" onclick="replyRemove('<%= value._id %>');" title="删除">×</a>
         <a href="/user/<%= value.uid %>"><img src="/img/avatar-small.jpg" class="avatar-tiny"></a> 

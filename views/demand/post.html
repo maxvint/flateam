@@ -3,7 +3,7 @@
 		<label for="product" class="ml10"><strong class="require">*</strong>选择产品：</label>
 		<div class="span4">
 			<select name="product">
-				<% product.forEach(function (value, index) { %>
+				<% product.forEach(function(value, index) { %>
 				<option value="<%=value._id %>"><%=value.title %></option>
 				<% }) %>
 			</select>
