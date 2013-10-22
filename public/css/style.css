@@ -265,25 +265,21 @@
   border-bottom: 1px solid #eee;
 }
 
-
-
-
-
-
-
 /*header*/
 .navbar-nav .userinfo {
-  margin: 5px 20px 0;
+  margin: 8px 20px 0;
 }
 .navbar-nav .userinfo .name {
   display: inline-block;
   margin: 8px 0 0 0;
 }
 .navbar-nav .userdo {
-  margin: 12px 0 0 20px;
+  margin: 15px 0 0 20px;
 }
 .navbar-nav .userdo i {
-  margin: 4px 2px 0 0;
+  margin: 3px 2px 0 0;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
 }
 
 /*sidebox*/
@@ -370,7 +366,7 @@
   margin: 0;
   padding: 0;
   width: 20px;
-  height: 20px;
+  height: 16px;
   vertical-align: middle;
 }
 .passport .intro .btn-register {
