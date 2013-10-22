@@ -1,7 +1,7 @@
 
 
 
-exports.index = function (req, res, next) {
+exports.index = function(req, res, next) {
   res.render('doc/index', {
     title: '文档',
     alias: 'doc',

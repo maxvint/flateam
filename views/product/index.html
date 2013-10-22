@@ -11,7 +11,7 @@
 			<a href="javascript:void(0);" event-node="post" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i>添加产品</a>
 		</div>
 		<ul class="main-list">
-			<% product.forEach(function (value, index) { %>
+			<% product.forEach(function(value, index) { %>
 			<li id="product_<%= value._id %>" model-node="productList" model-args="id=<%= value._id %>">
 				<a href="javascript:void(0);" class="stick" event-node="stick" event-args="id=<%= value._id%>" title="置顶"></a>
 					<a href="/product/bug/<%=value._id %>" class="action btn btn-primary btn-large hide">Bug</a>

@@ -33,7 +33,7 @@ M.addEventFns({
         $.post('/project/doRemove/' + args.id, function(res) {
           if(res.status == 'success') {
             ui.success('删除成功');
-            location.href = '/project/';
+            window.location.href = '/project/';
           } else {
             ui.error('删除失败');
           }
@@ -63,7 +63,7 @@ M.addEventFns({
       var doJoin = function() {
         $.post('/project/doJoin/' + args.id, function(res) {
           if(res.status == 'success') {
-            location.href = '/project/' + args.id;
+            window.location.href = '/project/' + args.id;
           } else {
             ui.error('操作失败');
           }
@@ -79,7 +79,7 @@ M.addEventFns({
       var doUnjoin = function() {
         $.post('/project/doUnjoin/' + args.id, function(res) {
           if(res.status == 'success') {
-            location.href = '/project/' + args.id;
+            window.location.href = '/project/' + args.id;
           } else {
             ui.error('操作失败');
           }

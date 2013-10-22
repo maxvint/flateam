@@ -49,7 +49,7 @@ var taskRemove = function(id) {
     $.post('/task/doRemove/' + id, function(res) {
       if(res.status == 'success') {
         ui.success('删除成功');
-        location.href = '/task/';
+        window.location.href = '/task/';
       } else {
         ui.error('删除失败');
       }
@@ -65,7 +65,7 @@ var forward = function(id) {
 var doForward = function(tid, uid, name) {
   $.post('/task/doForward/' + tid + '/' + uid + '/' + name, function(res) {
     if(res.status == 'success') {
-      location.href = '/task/';
+      window.location.href = '/task/';
     } else {
       ui.error('转让失败');
     }

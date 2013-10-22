@@ -3,7 +3,7 @@ var Project = models.Project;
 var Feed = models.Feed;
 var User = models.User;
 
-exports.index = function (req, res, next) {
+exports.index = function(req, res, next) {
   res.render('user/index', {
       title: '我的主页',
       alias: 'user',

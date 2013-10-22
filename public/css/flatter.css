@@ -1631,7 +1631,6 @@ select:focus:invalid:focus {
 .help-inline {
   display: inline-block;
   *display: inline;
-  padding-left: 5px;
   vertical-align: middle;
   *zoom: 1;
 }
@@ -4655,11 +4654,11 @@ input[type="submit"].btn.btn-mini {
 }
 
 .modal-body .ico-success {
-  background-position: 0 0;
+  background-position: 0 -50px;
 }
 
 .modal-body .ico-error {
-  background-position: 0 -50px;
+  background-position: 0 -150px;
 }
 
 .modal-body .ico-confirm {

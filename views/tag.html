@@ -3,7 +3,7 @@
 	<div class="main a-fadein">
 		<ul class="archive">
 		<% var lastYear = 0 %>
-		<% posts.forEach(function (post, index) { %>
+		<% posts.forEach(function(post, index) { %>
 		  	<% if (lastYear != post.time.year) { %>
 		    	<li><h3><%= post.time.year %></h3></li>
 		  	<% lastYear = post.time.year } %>

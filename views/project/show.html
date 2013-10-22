@@ -45,7 +45,7 @@
 					</div>
 				</div>
 				<div class="pro-feed">
-					<% feed.forEach(function (value, index) { %>
+					<% feed.forEach(function(value, index) { %>
 						<dl class="feed-item <% if(count > 1 && index < count-1) { %> line<% } %>" id="feed<%= value._id %>" model-node="feedList">
 							<dt class="head">
 								<a href="" class="avatar"><img src="/img/avatar.jpg" width="60" height="60" class="avatar-medium"></a>
@@ -90,7 +90,7 @@
 			<div class="well sidebox">
 				<h5>项目成员</h5>
 				<ul class="userlist">
-					<% members.forEach(function (value, index) { %>
+					<% members.forEach(function(value, index) { %>
 						<li class="<% if((index+1)/4|0 == 1) { %><% } else { %>mr20<% } %>">
 							<a href="/user/<%=value._id %>" target="_blank"><img src="/img/avatar.jpg" width="60" height="60" class="avatar-side"></a>
 							<p><a href="/user/<%=value._id %>" target="_blank"><%=value.name %></a></p>

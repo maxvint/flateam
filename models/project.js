@@ -13,7 +13,7 @@ var ProjectSchema = new Schema({
 });
 
 ProjectSchema.statics = {
-  list: function (options, callback) {
+  list: function(options, callback) {
     var query = options.query || {};
     this.find(query)
       .sort(options.sort)
