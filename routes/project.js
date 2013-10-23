@@ -13,27 +13,33 @@ exports.index = function(req, res, next) {
   var page = req.query.p ? parseInt(req.query.p) : 1;
 
   var options = {
+    sort: {
+      ctime: -1
+    },
     perpage: perpage,
     page: page
   };
 
-  Project.list(options, function(err, project) {
-    Project.count().exec(function(err, count) {
-      res.render('project/index', {
-        title: '项目主页',
-        alias: 'project',
-        user: req.session.user,
-        project: project,
-        page: page,
-        count: count,
-        perpage: perpage,
-        isFirstPage: (page - 1) == 0,
-        isLastPage: ((page - 1)*perpage + project.length) == count,
-        success: req.flash('success').toString(),
-        error: req.flash('error').toString()
-      });
+  Project.getList(options, function(err, project) {
+    res.render('project/index', {
+      title: '项目主页',
+      alias: 'project',
+      user: req.session.user,
+      project: project,
+      page: page,
+      count: count,
+      perpage: perpage,
+      isFirstPage: (page - 1) == 0,
+      isLastPage: count,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString()
     });
   });
+
+
+    
+
+
 };
 
 exports.my = function(req, res, next) {
@@ -48,8 +54,7 @@ exports.my = function(req, res, next) {
 
 exports.post = function(req, res, next) {
   // 获取产品列表
-  Product.find({}, function(err, product) {
-    console.log(product);
+  Product.getList({}, function(err, product) {
     res.render('project/post', {
       user: req.session.user,
       product: product,
@@ -62,14 +67,16 @@ exports.post = function(req, res, next) {
 // 创建项目
 exports.doPost = function(req, res, next) {
   //写入数据库
-  var ctime = Math.round(new Date().getTime()/1000);
   var post = new Project({
     title: req.body.title,
-    uid: req.session.user._id,
-    name: req.session.user.name,
+    user: {
+      id: req.session.user._id,
+      name: req.session.user.name
+    },
     member: req.session.user._id,
-    ctime: ctime
+    product: req.body.product,
   });
+  console.log(post);
   post.save(function(err, project) {
     if(!err) {
       // 更新user collection
@@ -90,7 +97,6 @@ exports.doPost = function(req, res, next) {
         uid: req.session.user._id,
         name: req.session.user.name,
         content: req.session.user.name + '创建了项目',
-        ctime: ctime,
         status: 1
       });
       feed.save(function(err, result) {
@@ -115,6 +121,7 @@ exports.show = function(req, res, next) {
 
       // 获取项目进度
 
+
       // 获取项目feed
       Feed.find({pid: pid}, '', {limit: 10, sort: [['ctime', 'desc' ]]},function(err, feed) {
         if(feed) {
@@ -135,6 +142,7 @@ exports.show = function(req, res, next) {
           error: req.flash('error').toString()
         });
       });
+
     });
   });
 }

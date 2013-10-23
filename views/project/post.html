@@ -6,13 +6,14 @@
 		</div>
 	</div>
 	<div class="control-group">
-		<label for="title" class="ml10">关联产品：</label>
+		<label for="product" class="ml10">关联产品：</label>
 		<div class="span4">
-			<input type="text" name="title" class="input-xxlarge" id="title" placeholder="请选择关联产品">
+			<% product.forEach(function(value, index) { %>
+				<label for="product_<%=value._id%>" class="mr10 checkbox inline"><input type="checkbox" name="product" id="product_<%=value._id%>" value="<%=value._id%>"><%=value.title%></label>
+			<% }) %>
 		</div>
 	</div>
 </form>
-		
 <script type="text/javascript">
 	$('#title').focus();
 	$('.form-horizontal').validate({

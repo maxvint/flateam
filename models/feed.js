@@ -12,4 +12,5 @@ var FeedSchema = new Schema({
   status: {type: Number},
   from: {type: String}
 });
+
 mongoose.model('Feed', FeedSchema);

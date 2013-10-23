@@ -38,6 +38,7 @@ app.use(express.session({
 }));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('express-promise')());
 
 // development only
 if ('development' == app.get('env')) {

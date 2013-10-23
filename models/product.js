@@ -17,6 +17,11 @@ ProductSchema.statics = {
     var query = options.query || {};
     this.findOne(query)
       .exec(callback);
+  },
+  getList: function(options, callback) {
+    var query = options.query || {};
+    this.find(query)
+      .exec(callback);
   }
 }
 
