@@ -14,6 +14,7 @@
     "mongoose": "latest",
     "imager": "latest",
     "forever": "latest",
-    "express-promise": "latest"
+    "express-promise": "latest",
+    "connect-flash": "latest"
   }
 }
